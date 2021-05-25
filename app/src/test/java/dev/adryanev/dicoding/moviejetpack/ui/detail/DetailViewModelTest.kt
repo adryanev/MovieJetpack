@@ -37,7 +37,7 @@ class DetailViewModelTest {
     }
     @Test
     fun getTvShow(){
-        viewModel.setSelectedMovie(dummyTvShow, true)
+        viewModel.setSelectedMovie(dummyTvShow, false)
         val tvShow = viewModel.movie
         assertNotNull(tvShow)
         assertEquals(dummyTvShow,tvShow)
