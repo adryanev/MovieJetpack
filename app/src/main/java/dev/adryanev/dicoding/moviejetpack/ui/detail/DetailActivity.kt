@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
 import dev.adryanev.dicoding.moviejetpack.databinding.ActivityDetailBinding
 import dev.adryanev.dicoding.moviejetpack.ui.home.MovieCallback
 import timber.log.Timber
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity(),MovieCallback {
     private lateinit var activityDetailBinding: ActivityDetailBinding
     private lateinit var detailViewModel: DetailViewModel

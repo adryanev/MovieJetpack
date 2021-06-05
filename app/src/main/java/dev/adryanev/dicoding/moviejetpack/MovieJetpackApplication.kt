@@ -1,10 +1,12 @@
 package dev.adryanev.dicoding.moviejetpack
 
 import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
-
 import timber.log.Timber.DebugTree
-class MovieJetpackApplication: Application() {
+
+@HiltAndroidApp
+class MovieJetpackApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -12,5 +14,6 @@ class MovieJetpackApplication: Application() {
         if (BuildConfig.DEBUG) {
             Timber.plant(DebugTree())
         }
+
     }
 }
