@@ -22,7 +22,15 @@ class Genre {
             10770 to "TV Movie",
             53 to "Thriller",
             10752 to "War",
-            37 to "Western"
+            37 to "Western",
+            10759 to " Action & Adventure",
+            10762 to "Kids",
+            10763 to "News",
+            10764 to "Reality",
+            10765 to "Sci-Fi & Fantasy",
+            10766 to "Soap",
+            10767 to "Talk",
+            10768 to "War & Politics"
         )
 
         fun getGenre(ids: List<Int>?) : String? {
