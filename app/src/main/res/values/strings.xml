@@ -1,4 +1,10 @@
 <resources>
+    <!-- error -->
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="connect_timeout">Connection Timeout</string>
+    <string name="unknown_error">Something error, please try again later</string>
+
+    <!--main -->
     <string name="app_name">MovieJetpack</string>
     <string name="poster">Poster</string>
     <string name="share">share</string>
@@ -8,4 +14,9 @@
     <string name="tv_show">TV Show</string>
     <string name="share_text">Tonton %s sekarang juga!</string>
     <string name="share_title">Bagikan konten ini sekarang.</string>
+
+    <string name="ok">OK</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="movie_logo">Movie Logo</string>
 </resources>

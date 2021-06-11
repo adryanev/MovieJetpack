@@ -1,10 +1,29 @@
 package dev.adryanev.dicoding.moviejetpack.ui.home.movies
 
-import androidx.lifecycle.ViewModel
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
-import dev.adryanev.dicoding.moviejetpack.utils.DataDummy
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
+import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
+import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MovieViewModel : ViewModel() {
+@HiltViewModel
+class MovieViewModel @Inject constructor(
+    private val movieRepository: MovieRepository
+) : BaseListViewModel<Movie>() {
 
-    fun getMovies(): List<MovieEntity> = DataDummy.generateMovies()
+    override fun loadData() {
+
+        viewModelScope.launch {
+            try {
+                movieRepository.getMovieList().collect {
+                    onLoadSuccess(it.data?.results)
+                }
+            } catch (exception: Exception) {
+                onError(exception)
+            }
+        }
+    }
 }

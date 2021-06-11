@@ -27,6 +27,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/primaryDarkColor</item>
         <!-- Customize your theme here. -->
+        <item name="titleTextColor">@color/primaryTextColor</item>
     </style>
 
     <style name="AppTabLayout" parent="Widget.Design.TabLayout">

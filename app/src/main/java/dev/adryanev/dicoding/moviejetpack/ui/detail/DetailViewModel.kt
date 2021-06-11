@@ -1,21 +1,21 @@
 package dev.adryanev.dicoding.moviejetpack.ui.detail
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
+import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
+import dev.adryanev.dicoding.moviejetpack.ui.base.BaseViewModel
 import dev.adryanev.dicoding.moviejetpack.utils.DataDummy
+import javax.inject.Inject
 
-class DetailViewModel : ViewModel() {
-    private var isMovie = false
-    private var _movie:MovieEntity? = null
-    val movie: MovieEntity?
-        get() {
-            return _movie
-        }
+@HiltViewModel
+class DetailViewModel @Inject constructor(
+    private val repository: MovieRepository
+) : BaseViewModel() {
 
-    fun setSelectedMovie(movie: MovieEntity, isMovie:Boolean){
-        this._movie = movie
-        this.isMovie = isMovie
-    }
+   val movie = MutableLiveData<Movie>()
 
 
 }

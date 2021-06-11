@@ -2,7 +2,6 @@ package dev.adryanev.dicoding.moviejetpack.ui.home
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.contrib.RecyclerViewActions
@@ -21,7 +20,7 @@ class HomeActivityTest {
     private val dummyTvShows = DataDummy.generateTvShows()
 
     @get:Rule
-    var activityRule = ActivityScenarioRule(HomeActivity::class.java)
+    var activityRule = ActivityScenarioRule(HomeFragment::class.java)
 
     @Test
     fun loadMovies(){

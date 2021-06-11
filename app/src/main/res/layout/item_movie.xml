@@ -1,86 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardBackgroundColor="@color/cardview_light_background"
-    app:cardCornerRadius="4dp"
-    app:cardUseCompatPadding="true">
-
+    >
+    <data>
+        <variable
+            name="item"
+            type="dev.adryanev.dicoding.moviejetpack.data.entities.Movie" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/item_movie_poster"
-            android:layout_width="120dp"
-            android:layout_height="160dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/poster"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="4dp"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/backgrounds/scenic" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/item_movie_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/item_movie_poster"
-            app:layout_constraintTop_toTopOf="@+id/item_movie_poster"
-            tools:text="@tools:sample/full_names" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
-        <TextView
-            android:id="@+id/item_movie_release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/item_movie_title"
-            app:layout_constraintTop_toBottomOf="@+id/item_movie_title"
-            tools:text="@tools:sample/date/ddmmyy" />
+                <ImageView
+                    android:id="@+id/item_movie_poster"
+                    android:layout_width="120dp"
+                    android:layout_height="160dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:contentDescription="@string/poster"
+                    app:centerCrop="@{ true }"
+                    app:imageUrl="@{ item.fullPosterPath }"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@tools:sample/backgrounds/scenic" />
 
-        <TextView
-            android:id="@+id/item_movie_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/item_movie_release_date"
-            app:layout_constraintTop_toBottomOf="@+id/item_movie_release_date"
-            tools:text="@tools:sample/cities"
-            app:drawableStartCompat="@drawable/ic_baseline_star_rate_24" />
+                <TextView
+                    android:text="@{item.title}"
+                    android:id="@+id/item_movie_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/item_movie_poster"
+                    app:layout_constraintTop_toTopOf="@+id/item_movie_poster"
+                    tools:text="@tools:sample/full_names" />
 
-        <ImageButton
-            android:id="@+id/item_movie_share"
-            style="@android:style/Widget.Material.ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:background="#00FFFFFF"
-            android:contentDescription="@string/share"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/item_movie_poster"
-            app:layout_constraintTop_toBottomOf="@+id/item_movie_score"
-            app:srcCompat="@drawable/ic_share_blue" />
+                <TextView
+                    android:text="@{item.releaseDate}"
+                    android:id="@+id/item_movie_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/item_movie_title"
+                    app:layout_constraintTop_toBottomOf="@+id/item_movie_title"
+                    tools:text="@tools:sample/date/ddmmyy" />
 
+                <TextView
+                    android:text="@{item.voteAverage.toString()}"
+                    android:id="@+id/item_movie_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:drawableStartCompat="@drawable/ic_baseline_star_rate_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/item_movie_release_date"
+                    app:layout_constraintTop_toBottomOf="@+id/item_movie_release_date"
+                    tools:text="@tools:sample/cities" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.cardview.widget.CardView>
+</layout>
+

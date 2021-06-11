@@ -1,10 +1,31 @@
 package dev.adryanev.dicoding.moviejetpack.ui.home.tvshows
 
-import androidx.lifecycle.ViewModel
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
-import dev.adryanev.dicoding.moviejetpack.utils.DataDummy
+import android.content.res.Resources
+import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
+import dev.adryanev.dicoding.moviejetpack.data.repositories.TvShowRepository
+import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class TvShowViewModel : ViewModel() {
+@HiltViewModel
+class TvShowViewModel @Inject constructor(
+    val resources: Resources,
+    private val tvShowRepository: TvShowRepository
+) : BaseListViewModel<TvShow>() {
 
-    fun getTvShows(): List<MovieEntity> = DataDummy.generateTvShows()
+    override fun loadData() {
+        viewModelScope.launch {
+            try {
+                tvShowRepository.getTvShowList().collect {
+                    onLoadSuccess(it.data?.results)
+                }
+
+            } catch (exception: Exception) {
+                onError(exception)
+            }
+        }
+    }
 }

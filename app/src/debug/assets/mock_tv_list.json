@@ -1,0 +1,437 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "/Afp8OhiO0Ajb3NPoCBvfu2pqaeO.jpg",
+      "original_name": "Loki",
+      "genre_ids": [
+        10765,
+        10759,
+        18
+      ],
+      "original_language": "en",
+      "poster_path": "/kEl2t3OhXc3Zb9FBh1AuYzRTgZp.jpg",
+      "vote_count": 20,
+      "vote_average": 9.4,
+      "name": "Loki",
+      "overview": "After stealing the Tesseract during the events of “Avengers: Endgame,” an alternate version of Loki is brought to the mysterious Time Variance Authority, a bureaucratic organization that exists outside of time and space and monitors the timeline. They give Loki a choice: face being erased from existence due to being a “time variant”or help fix the timeline and stop a greater threat.",
+      "origin_country": [
+        "US"
+      ],
+      "first_air_date": "2021-06-09",
+      "id": 84958,
+      "popularity": 702.015,
+      "media_type": "tv"
+    },
+    {
+      "origin_country": [
+        "US"
+      ],
+      "vote_average": 8.2,
+      "overview": "On a perilous adventure across a post-apocalyptic world, a lovable boy who's half-human and half-deer searches for a new beginning with a gruff protector.",
+      "id": 103768,
+      "name": "Sweet Tooth",
+      "backdrop_path": "/xpba0Dxz3sxV3QgYLR8UIe1LAAX.jpg",
+      "vote_count": 117,
+      "genre_ids": [
+        18,
+        10765
+      ],
+      "poster_path": "/rgMfhcrVZjuy5b7Pn0KzCRCEnMX.jpg",
+      "original_language": "en",
+      "first_air_date": "2021-06-04",
+      "original_name": "Sweet Tooth",
+      "popularity": 289.944,
+      "media_type": "tv"
+    },
+    {
+      "poster_path": "/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg",
+      "vote_average": 8.5,
+      "first_air_date": "2016-01-25",
+      "vote_count": 9117,
+      "overview": "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
+      "id": 63174,
+      "genre_ids": [
+        80,
+        10765
+      ],
+      "backdrop_path": "/h48Dpb7ljv8WQvVdyFWVLz64h4G.jpg",
+      "name": "Lucifer",
+      "original_name": "Lucifer",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "popularity": 1518.343,
+      "media_type": "tv"
+    },
+    {
+      "vote_average": 8.1,
+      "overview": "A detective in a small Pennsylvania town investigates a local murder while trying to keep her life from falling apart.",
+      "id": 115004,
+      "original_name": "Mare of Easttown",
+      "backdrop_path": "/7X1IGIl1JMJ9YFzJymCVoqZbvTR.jpg",
+      "vote_count": 225,
+      "genre_ids": [
+        18,
+        9648,
+        80
+      ],
+      "name": "Mare of Easttown",
+      "original_language": "en",
+      "origin_country": [
+        "US"
+      ],
+      "poster_path": "/78aK4Msbr22A5PGa6PZV0pAvdwf.jpg",
+      "first_air_date": "2021-04-18",
+      "popularity": 522.172,
+      "media_type": "tv"
+    },
+    {
+      "first_air_date": "1994-09-22",
+      "backdrop_path": "/l0qVZIpXtIo7km9u5Yqh0nKPOr5.jpg",
+      "genre_ids": [
+        35,
+        18
+      ],
+      "original_language": "en",
+      "poster_path": "/f496cm9enuEsZkSPzCwnTESEK5s.jpg",
+      "vote_count": 4622,
+      "vote_average": 8.4,
+      "id": 1668,
+      "original_name": "Friends",
+      "origin_country": [
+        "US"
+      ],
+      "overview": "The misadventures of a group of friends as they navigate the pitfalls of work, life and love in Manhattan.",
+      "name": "Friends",
+      "popularity": 278.863,
+      "media_type": "tv"
+    },
+    {
+      "vote_average": 7.8,
+      "original_name": "Dom",
+      "origin_country": [
+        "BR"
+      ],
+      "first_air_date": "2021-06-04",
+      "backdrop_path": "/89oMRMX6QVRjwgyJoekbORF0jxO.jpg",
+      "genre_ids": [
+        18
+      ],
+      "vote_count": 10,
+      "original_language": "pt",
+      "name": "DOM",
+      "poster_path": "/tl1Gyi1Ee9HCRD7IieZScoJL9I4.jpg",
+      "id": 123377,
+      "overview": "A father who never stopped fighting against drugs. A son who never stopped using them. Two sides of the same coin. Victor is a cop who has fought all his life to curb cocaine trafficking. His son is a drug addict who has become one of the most wanted burglars in Rio de Janeiro. Will a father’s love be enough to save his son’s life?",
+      "popularity": 51.362,
+      "media_type": "tv"
+    },
+    {
+      "backdrop_path": "/63zbegJkwsiAg4DLM0AeP4bkKkn.jpg",
+      "vote_count": 5,
+      "genre_ids": [
+        18,
+        9648
+      ],
+      "vote_average": 9.2,
+      "original_language": "en",
+      "id": 95839,
+      "poster_path": "/ge0Lk0fDBoFNGdtBXnIEaonyfTW.jpg",
+      "original_name": "Lisey's Story",
+      "origin_country": [
+        "US"
+      ],
+      "name": "Lisey's Story",
+      "first_air_date": "2021-06-04",
+      "overview": "This terrifying thriller follows widow Lisey Landon as a series of disturbing events revives memories of her marriage to author Scott Landon and the darkness that plagued him.",
+      "popularity": 47.924,
+      "media_type": "tv"
+    },
+    {
+      "genre_ids": [
+        10765,
+        10759,
+        16
+      ],
+      "original_language": "en",
+      "poster_path": "/WjQmEWFrOf98nT5aEfUfVYz9N2.jpg",
+      "first_air_date": "2021-05-04",
+      "name": "The Bad Batch",
+      "vote_average": 8.7,
+      "vote_count": 264,
+      "original_name": "The Bad Batch",
+      "origin_country": [
+        "US"
+      ],
+      "overview": "Follow the elite and experimental Clones of the Bad Batch as they find their way in a rapidly changing galaxy in the aftermath of the Clone Wars.",
+      "id": 105971,
+      "backdrop_path": "/2yZ97TAUKLN8iIaLa4m48BGqBSY.jpg",
+      "popularity": 453.85,
+      "media_type": "tv"
+    },
+    {
+      "original_name": "Ragnarok",
+      "original_language": "no",
+      "id": 91557,
+      "overview": "A small Norwegian town experiencing warm winters and violent downpours seems to be headed for another Ragnarök -- unless someone intervenes in time.",
+      "vote_average": 8.0,
+      "name": "Ragnarok",
+      "first_air_date": "2020-01-31",
+      "backdrop_path": "/wu444tM9YBllq9UcBv5TeidO3j3.jpg",
+      "vote_count": 456,
+      "genre_ids": [
+        18,
+        10765,
+        9648
+      ],
+      "poster_path": "/xUtOM1QO4r8w8yeE00QvBdq58N5.jpg",
+      "origin_country": [
+        "NO"
+      ],
+      "popularity": 1016.096,
+      "media_type": "tv"
+    },
+    {
+      "origin_country": [
+        "US"
+      ],
+      "vote_average": 7.4,
+      "overview": "In the forgotten town of Carp, Texas, Panic is the only way out. Every summer the graduating seniors risk their lives competing in a series of challenges for the chance to win life-changing money. After the death of two players the stakes—and danger—have never been higher.",
+      "id": 122530,
+      "name": "Panic",
+      "backdrop_path": "/n9JoMVu8exHVQFzKvpeysyhIN4H.jpg",
+      "vote_count": 53,
+      "genre_ids": [
+        10759,
+        18,
+        80
+      ],
+      "poster_path": "/yNsVFQsXW5CYtFkrDSu5BmLEtdF.jpg",
+      "original_language": "en",
+      "first_air_date": "2021-05-27",
+      "original_name": "Panic",
+      "popularity": 31.59,
+      "media_type": "tv"
+    },
+    {
+      "name": "Game of Thrones",
+      "original_language": "en",
+      "poster_path": "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+      "vote_average": 8.4,
+      "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+      "original_name": "Game of Thrones",
+      "origin_country": [
+        "US"
+      ],
+      "id": 1399,
+      "vote_count": 14659,
+      "backdrop_path": "/suopoADq0k8YZr4dQXcU6pToj6s.jpg",
+      "genre_ids": [
+        10765,
+        18,
+        10759
+      ],
+      "first_air_date": "2011-04-17",
+      "popularity": 506.615,
+      "media_type": "tv"
+    },
+    {
+      "genre_ids": [
+        16,
+        10765
+      ],
+      "original_language": "en",
+      "poster_path": "/asDqvkE66EegtKJJXIRhBJPxscr.jpg",
+      "first_air_date": "2019-03-15",
+      "name": "Love, Death & Robots",
+      "vote_average": 8.2,
+      "vote_count": 1143,
+      "original_name": "Love, Death & Robots",
+      "origin_country": [
+        "US"
+      ],
+      "overview": "Terrifying creatures, wicked surprises and dark comedy converge in this NSFW anthology of animated stories presented by Tim Miller and David Fincher.",
+      "id": 86831,
+      "backdrop_path": "/nBrkOZyI75artyizuBFeya48KbO.jpg",
+      "popularity": 328.734,
+      "media_type": "tv"
+    },
+    {
+      "first_air_date": "1999-10-20",
+      "original_name": "ワンピース",
+      "id": 37854,
+      "backdrop_path": "/4Mt7WHox67uJ1yErwTBFcV8KWgG.jpg",
+      "genre_ids": [
+        10759,
+        35,
+        16
+      ],
+      "vote_count": 2091,
+      "original_language": "ja",
+      "origin_country": [
+        "JP"
+      ],
+      "name": "One Piece",
+      "poster_path": "/1j4vxmpsjCTIOCUAzevHF8M8aZx.jpg",
+      "overview": "Years ago, the fearsome pirate king Gol D. Roger was executed, leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new pirate king. Monkey D. Luffy, a boy who consumed one of the \"Devil's Fruits\", has it in his head that he'll follow in the footsteps of his idol, the pirate Shanks, and find the One Piece. It helps, of course, that his body has the properties of rubber and he's surrounded by a bevy of skilled fighters and thieves to help him along the way. Monkey D. Luffy brings a bunch of his crew followed by, Roronoa Zoro, Nami, Usopp, Sanji, Tony-Tony Chopper, Nico Robin, Franky, and Brook. They will do anything to get the One Piece and become King of the Pirates!..",
+      "vote_average": 8.7,
+      "popularity": 70.026,
+      "media_type": "tv"
+    },
+    {
+      "backdrop_path": "/b0WmHGc8LHTdGCVzxRb3IBMur57.jpg",
+      "id": 88396,
+      "vote_count": 5791,
+      "original_language": "en",
+      "first_air_date": "2021-03-19",
+      "origin_country": [
+        "US"
+      ],
+      "genre_ids": [
+        10765,
+        10759,
+        18,
+        10768
+      ],
+      "poster_path": "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+      "vote_average": 7.9,
+      "name": "The Falcon and the Winter Soldier",
+      "overview": "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+      "original_name": "The Falcon and the Winter Soldier",
+      "popularity": 737.246,
+      "media_type": "tv"
+    },
+    {
+      "first_air_date": "2017-05-02",
+      "original_name": "La casa de papel",
+      "origin_country": [
+        "ES"
+      ],
+      "backdrop_path": "/xGexTKCJDkl12dTW4YCBDXWb1AD.jpg",
+      "genre_ids": [
+        80,
+        18
+      ],
+      "original_language": "es",
+      "poster_path": "/MoEKaPFHABtA1xKoOteirGaHl1.jpg",
+      "vote_count": 13101,
+      "name": "Money Heist",
+      "vote_average": 8.3,
+      "id": 71446,
+      "overview": "To carry out the biggest heist in history, a mysterious man called The Professor recruits a band of eight robbers who have a single characteristic: none of them has anything to lose. Five months of seclusion - memorizing every step, every detail, every probability - culminate in eleven days locked up in the National Coinage and Stamp Factory of Spain, surrounded by police forces and with dozens of hostages in their power, to find out whether their suicide wager will lead to everything or nothing.",
+      "popularity": 235.944,
+      "media_type": "tv"
+    },
+    {
+      "poster_path": "/oIkxqt6ug5zT5ZSUUyc1Iqopf02.jpg",
+      "first_air_date": "2017-04-26",
+      "name": "The Handmaid's Tale",
+      "vote_count": 1422,
+      "vote_average": 8.1,
+      "original_name": "The Handmaid's Tale",
+      "backdrop_path": "/jXB3OoWPkojsOP2O2OoLCeAIDRS.jpg",
+      "overview": "Set in a dystopian future, a woman is forced to live as a concubine under a fundamentalist theocratic dictatorship. A TV adaptation of Margaret Atwood's novel.",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "id": 69478,
+      "popularity": 441.815,
+      "media_type": "tv"
+    },
+    {
+      "backdrop_path": "/9Jmd1OumCjaXDkpllbSGi2EpJvl.jpg",
+      "id": 60735,
+      "vote_count": 7769,
+      "original_language": "en",
+      "first_air_date": "2014-10-07",
+      "origin_country": [
+        "US"
+      ],
+      "genre_ids": [
+        18,
+        10765
+      ],
+      "poster_path": "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
+      "vote_average": 7.7,
+      "name": "The Flash",
+      "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+      "original_name": "The Flash",
+      "popularity": 1115.817,
+      "media_type": "tv"
+    },
+    {
+      "original_name": "The Mosquito Coast",
+      "origin_country": [
+        "US"
+      ],
+      "vote_count": 83,
+      "name": "The Mosquito Coast",
+      "vote_average": 7.2,
+      "backdrop_path": "/hSoB7M5wMKqUKwI2k0hq9RJcOSU.jpg",
+      "first_air_date": "2021-04-30",
+      "genre_ids": [
+        18,
+        10759
+      ],
+      "overview": "Allie Fox—a brilliant inventor and stubborn idealist—uproots his family for a dangerous quest through Mexico to flee the U.S. government and find safety.",
+      "original_language": "en",
+      "id": 93716,
+      "poster_path": "/yVtwJQN2uBbGF9rryXPIvuJHWzH.jpg",
+      "popularity": 60.464,
+      "media_type": "tv"
+    },
+    {
+      "name": "Why Women Kill",
+      "original_language": "en",
+      "poster_path": "/fI3E1G5N8oimMeyYn5UzWRT2cST.jpg",
+      "vote_average": 8.3,
+      "overview": "Three women living in three different decades: a housewife in the '60s, a socialite in the '80s and a lawyer in 2018, deal with infidelity in their marriages.",
+      "original_name": "Why Women Kill",
+      "origin_country": [
+        "US"
+      ],
+      "id": 87428,
+      "vote_count": 89,
+      "backdrop_path": "/61YttrsiP6B4sJo98HFMuHKPV3G.jpg",
+      "genre_ids": [
+        35,
+        80,
+        18
+      ],
+      "first_air_date": "2019-08-15",
+      "popularity": 65.421,
+      "media_type": "tv"
+    },
+    {
+      "backdrop_path": "/pPKiIJEEcV0E1hpVcWRXyp73ZpX.jpg",
+      "genre_ids": [
+        10759,
+        10765,
+        18
+      ],
+      "original_language": "en",
+      "name": "Superman & Lois",
+      "id": 95057,
+      "vote_count": 926,
+      "original_name": "Superman & Lois",
+      "origin_country": [
+        "US"
+      ],
+      "overview": "After years of facing megalomaniacal supervillains, monsters wreaking havoc on Metropolis, and alien invaders intent on wiping out the human race, The Man of Steel aka Clark Kent and Lois Lane come face to face with one of their greatest challenges ever: dealing with all the stress, pressures and complexities that come with being working parents in today's society.",
+      "vote_average": 8.3,
+      "poster_path": "/vlv1gn98GqMnKHLSh0dNciqGfBl.jpg",
+      "first_air_date": "2021-02-23",
+      "popularity": 644.012,
+      "media_type": "tv"
+    }
+  ],
+  "total_pages": 1000,
+  "total_results": 20000
+}

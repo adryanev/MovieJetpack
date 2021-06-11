@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="vm"
+            name="viewModel"
             type="dev.adryanev.dicoding.moviejetpack.ui.detail.DetailViewModel" />
         <import type="dev.adryanev.dicoding.moviejetpack.utils.ConverterUtil"/>
     </data>
@@ -23,7 +23,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@{vm.movie.title}"
+            android:text="@{viewModel.movie.title}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@{vm.movie.releaseDate}"
+            android:text="@{viewModel.movie.releaseDate}"
             app:layout_constraintStart_toStartOf="@+id/judul_film"
             app:layout_constraintTop_toBottomOf="@+id/judul_film"
             app:layout_constraintVertical_bias="0.0"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/genre_text"
-            genreToString="@{vm.movie.genre}"
+            genreToString="@{viewModel.movie.genreIds}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -75,7 +75,7 @@
             android:isIndicator="true"
             android:max="10"
             android:numStars="10"
-            android:rating="@{vm.movie.userScore/10}"
+            android:rating="@{viewModel.movie.voteAverage.floatValue()}"
             android:stepSize=".1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
@@ -83,51 +83,16 @@
             app:layout_constraintTop_toBottomOf="@+id/genre_text"
             app:layout_constraintVertical_bias="0.0" />
 
-        <TextView
-            android:id="@+id/revenue_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            currency="@{vm.movie.revenue}"
-            android:visibility="@{ConverterUtil.isNull(vm.movie.revenue)}"
-            app:drawableStartCompat="@drawable/ic_monetization_on_black_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/duration_text"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/duration_text"
-            tools:text="35000000"
-            tools:visibility="visible" />
-
-
-        <TextView
-            android:id="@+id/duration_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{@string/duration(vm.movie.duration)}"
-            app:drawableStartCompat="@drawable/ic_timelapse_black_24dp"
-            app:layout_constraintEnd_toStartOf="@+id/country_text"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/revenue_text"
-            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-            tools:text="109 minute" />
 
         <TextView
             android:id="@+id/country_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="@{vm.movie.language}"
+            android:text="@{viewModel.movie.originalLanguage}"
             app:drawableStartCompat="@drawable/ic_flag_black_24dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/duration_text"
-            app:layout_constraintTop_toTopOf="@+id/duration_text"
+            app:layout_constraintStart_toEndOf="@+id/genre_text"
+            app:layout_constraintTop_toTopOf="@+id/genre_text"
             tools:text="US" />
 
 
@@ -135,16 +100,16 @@
             android:id="@+id/overview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
             android:ellipsize="end"
-            android:text="@{vm.movie.overview}"
+            android:text="@{viewModel.movie.overview}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/duration_text"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             tools:text="@tools:sample/lorem" />
 
 

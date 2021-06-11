@@ -1,6 +1,6 @@
 package dev.adryanev.dicoding.moviejetpack.data.remote
 
-import dev.adryanev.dicoding.moviejetpack.utils.Resource
+import dev.adryanev.dicoding.moviejetpack.data.entities.Resource
 import retrofit2.Response
 import timber.log.Timber
 
@@ -15,6 +15,7 @@ abstract class BaseDataSource {
             }
             return error(" ${response.code()} ${response.message()}")
         } catch (e: Exception){
+            Timber.e(e)
             return error(e.message ?: e.toString())
 
         }

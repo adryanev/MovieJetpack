@@ -4,6 +4,8 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
+    id "androidx.navigation.safeargs.kotlin"
+
 }
 
 android {
@@ -19,6 +21,9 @@ android {
         vectorDrawables.useSupportLibrary = true
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
         buildConfigField "String", "API_KEY", MOVIE_DB_API_KEY
+        buildConfigField "String", "SMALL_IMAGE_URL", "\"https://image.tmdb.org/t/p/w200\""
+        buildConfigField "String", "LARGE_IMAGE_URL", "\"https://image.tmdb.org/t/p/w500\""
+        buildConfigField "String", "ORIGINAL_IMAGE_URL", "\"https://image.tmdb.org/t/p/original\""
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -56,22 +61,48 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
 
+    //nav
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
+
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+
+    implementation "com.squareup.moshi:moshi-kotlin:1.12.0"
+    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.12.0'
     //logging
     implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptorVersion"
 
     //Hilt Dagger
-    implementation "com.google.dagger:hilt-android:2.28-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
+
+    //Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutineVersion"
+
+
+    implementation 'com.facebook.stetho:stetho:1.5.1'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+    //Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$roomVersion"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$roomVersion"
+
+    // optional - Test helpers
+    testImplementation "androidx.room:room-testing:$roomVersion"
 
 
 
@@ -83,6 +114,7 @@ dependencies {
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
     testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
 
+    androidTestImplementation "androidx.navigation:navigation-testing:$navVersion"
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
     androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
