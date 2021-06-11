@@ -10,8 +10,10 @@ import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentTvShowBinding
+import dev.adryanev.dicoding.moviejetpack.ui.base.getNavController
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListAdapter
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListFragment
+import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieFragmentDirections
 
 @AndroidEntryPoint
 class TvShowFragment : BaseListFragment<FragmentTvShowBinding, TvShowViewModel, TvShow>() {
@@ -22,6 +24,7 @@ class TvShowFragment : BaseListFragment<FragmentTvShowBinding, TvShowViewModel, 
        by lazy {  TvShowListAdapater(itemCLickListener = { toDetail(it) })}
 
     private fun toDetail(tvShow: TvShow) {
+        getNavController()?.navigate(MovieFragmentDirections.actionGlobalDetailTvShowFragment(tvShow))
 
     }
 

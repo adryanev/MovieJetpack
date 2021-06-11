@@ -1,4 +1,4 @@
-package dev.adryanev.dicoding.moviejetpack.ui.detail
+package dev.adryanev.dicoding.moviejetpack.ui.detailmovie
 
 import dev.adryanev.dicoding.moviejetpack.utils.DataDummy
 import org.junit.Before
@@ -6,20 +6,20 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class DetailViewModelTest {
+class DetailMovieViewModelTest {
 
-    private lateinit var viewModel: DetailViewModel
+    private lateinit var movieViewModel: DetailMovieViewModel
     private val dummyMovie = DataDummy.generateMovies()[0]
     private val dummyTvShow = DataDummy.generateTvShows()[0]
     @Before
     fun setUp() {
-        viewModel = DetailViewModel()
+        movieViewModel = DetailMovieViewModel()
     }
 
     @Test
     fun getMovie() {
-        viewModel.setSelectedMovie(dummyMovie,true)
-        val movie = viewModel.movie
+        movieViewModel.setSelectedMovie(dummyMovie,true)
+        val movie = movieViewModel.movie
         assertNotNull(movie)
         assertEquals(dummyMovie,movie)
         assertEquals(dummyMovie.title, movie?.title)
@@ -37,8 +37,8 @@ class DetailViewModelTest {
     }
     @Test
     fun getTvShow(){
-        viewModel.setSelectedMovie(dummyTvShow, false)
-        val tvShow = viewModel.movie
+        movieViewModel.setSelectedMovie(dummyTvShow, false)
+        val tvShow = movieViewModel.movie
         assertNotNull(tvShow)
         assertEquals(dummyTvShow,tvShow)
         assertEquals(dummyTvShow.title, tvShow?.title)

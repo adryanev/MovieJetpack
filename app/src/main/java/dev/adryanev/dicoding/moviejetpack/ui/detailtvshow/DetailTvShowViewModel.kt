@@ -1,21 +1,19 @@
-package dev.adryanev.dicoding.moviejetpack.ui.detail
+package dev.adryanev.dicoding.moviejetpack.ui.detailtvshow
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
+import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseViewModel
-import dev.adryanev.dicoding.moviejetpack.utils.DataDummy
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(
+class DetailTvShowViewModel @Inject constructor(
     private val repository: MovieRepository
 ) : BaseViewModel() {
 
-   val movie = MutableLiveData<Movie>()
+   val tvShow = MutableLiveData<TvShow>()
 
 
 }

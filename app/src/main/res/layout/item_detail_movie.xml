@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieViewModel" />
+        <import type="dev.adryanev.dicoding.moviejetpack.utils.ConverterUtil"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+
+        <TextView
+            android:id="@+id/judul_film"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{viewModel.movie.title}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/tahun_rilis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@{viewModel.movie.releaseDate}"
+            app:layout_constraintStart_toStartOf="@+id/judul_film"
+            app:layout_constraintTop_toBottomOf="@+id/judul_film"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="@tools:sample/date/ddmmyy" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="4dp"
+            android:layout_height="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bullet_seperate"
+            app:layout_constraintStart_toEndOf="@+id/tahun_rilis"
+            app:layout_constraintTop_toTopOf="@+id/tahun_rilis" />
+
+        <TextView
+            android:id="@+id/genre_text"
+            genreToString="@{viewModel.movie.genreIds}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/genre"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/tahun_rilis"
+            tools:text="Genre1, Genre2, Genre3" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="?ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:isIndicator="true"
+            android:max="10"
+            android:numStars="10"
+            android:rating="@{viewModel.movie.voteAverage.floatValue()}"
+            android:stepSize=".1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/genre_text"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="32dp"
+            android:ellipsize="end"
+            android:text="@{viewModel.movie.overview}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ratingBar"
+            tools:text="@tools:sample/lorem" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -23,10 +23,10 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/detailFragment"
-        android:name="dev.adryanev.dicoding.moviejetpack.ui.detail.DetailFragment"
-        android:label="DetailFragment"
-        tools:layout="@layout/fragment_detail" >
+        android:id="@+id/detailMovieFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieFragment"
+        android:label="DetailMovieFragment"
+        tools:layout="@layout/fragment_detail_movie" >
         <argument
             android:name="movie"
             app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.Movie"
@@ -34,7 +34,14 @@
     </fragment>
     <action
         android:id="@+id/action_global_detailFragment"
-        app:destination="@id/detailFragment"
+        app:destination="@id/detailMovieFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" />
+    <action
+        android:id="@+id/action_global_detailTvShowFragment"
+        app:destination="@id/detailTvShowFragment"
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
@@ -49,4 +56,14 @@
         android:name="dev.adryanev.dicoding.moviejetpack.ui.home.tvshows.TvShowFragment"
         android:label="fragment_tv_show"
         tools:layout="@layout/fragment_tv_show" />
+    <fragment
+        android:id="@+id/detailTvShowFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.detailtvshow.DetailTvShowFragment"
+        android:label="DetailTvShowFragment"
+        tools:layout="@layout/fragment_detail_tvshow">
+        <argument
+            android:name="tvShow"
+            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.TvShow"
+            />
+    </fragment>
 </navigation>

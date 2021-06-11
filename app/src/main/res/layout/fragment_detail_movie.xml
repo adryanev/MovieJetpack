@@ -3,7 +3,7 @@
     <data>
         <variable
             name="viewModel"
-            type="dev.adryanev.dicoding.moviejetpack.ui.detail.DetailViewModel" />
+            type="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieViewModel" />
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -66,7 +66,7 @@
             <include
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                layout="@layout/item_detail"
+                layout="@layout/item_detail_movie"
                 android:id="@+id/item_detail"
                 />
         </androidx.core.widget.NestedScrollView>

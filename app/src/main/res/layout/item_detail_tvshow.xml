@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="dev.adryanev.dicoding.moviejetpack.ui.detail.DetailViewModel" />
+            type="dev.adryanev.dicoding.moviejetpack.ui.detailtvshow.DetailTvShowViewModel" />
         <import type="dev.adryanev.dicoding.moviejetpack.utils.ConverterUtil"/>
     </data>
 
@@ -23,7 +23,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@{viewModel.movie.title}"
+            android:text="@{viewModel.tvShow.originalName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
-            android:text="@{viewModel.movie.releaseDate}"
+            android:text="@{viewModel.tvShow.firstAirDate}"
             app:layout_constraintStart_toStartOf="@+id/judul_film"
             app:layout_constraintTop_toBottomOf="@+id/judul_film"
             app:layout_constraintVertical_bias="0.0"
@@ -54,7 +54,7 @@
 
         <TextView
             android:id="@+id/genre_text"
-            genreToString="@{viewModel.movie.genreIds}"
+            genreToString="@{viewModel.tvShow.genreIds}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -75,25 +75,13 @@
             android:isIndicator="true"
             android:max="10"
             android:numStars="10"
-            android:rating="@{viewModel.movie.voteAverage.floatValue()}"
+            android:rating="@{viewModel.tvShow.voteAverage.floatValue()}"
             android:stepSize=".1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/genre_text"
             app:layout_constraintVertical_bias="0.0" />
-
-
-        <TextView
-            android:id="@+id/country_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.movie.originalLanguage}"
-            app:drawableStartCompat="@drawable/ic_flag_black_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/genre_text"
-            app:layout_constraintTop_toTopOf="@+id/genre_text"
-            tools:text="US" />
 
 
         <TextView
@@ -104,7 +92,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="32dp"
             android:ellipsize="end"
-            android:text="@{viewModel.movie.overview}"
+            android:text="@{viewModel.tvShow.overview}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

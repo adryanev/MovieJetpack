@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="dev.adryanev.dicoding.moviejetpack.ui.detailtvshow.DetailTvShowViewModel" />
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:id="@+id/detail_coord"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTabLayout"
+            android:id="@+id/appbar_detail"
+            android:background="@android:color/transparent"
+            app:expanded="true"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="?attr/colorPrimary"
+                app:expandedTitleGravity="top"
+                android:fitsSystemWindows="true"
+                app:expandedTitleMarginStart="48dp"
+                app:expandedTitleMarginEnd="64dp"
+                >
+                <ImageView
+                    android:id="@+id/backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:contentDescription="@string/poster"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic"
+                    app:imageUrl="@{ viewModel.tvShow.fullPosterPath }"
+                    />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:titleTextColor="?attr/colorOnPrimary"
+                    app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+                    />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:id="@+id/detail_scroll_view"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <include
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                layout="@layout/item_detail_tvshow"
+                android:id="@+id/item_detail_tvshow"
+                />
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_detail"
+            app:layout_anchor="@id/appbar_detail"
+            app:layout_anchorGravity="bottom|end"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share_blue"
+            android:contentDescription="@string/share" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
