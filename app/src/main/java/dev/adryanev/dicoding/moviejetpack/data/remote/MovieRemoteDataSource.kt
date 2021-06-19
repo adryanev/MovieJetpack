@@ -9,7 +9,6 @@ import javax.inject.Inject
 class MovieRemoteDataSource @Inject constructor(private val movieDbWebservice: Webservice) : BaseDataSource() {
 
     suspend fun getMovieList(): Resource<ResponseListMovie> = getResult {
-        Timber.d(movieDbWebservice.getMovieList().headers().toString())
         movieDbWebservice.getMovieList()
     }
     suspend fun getTvShowList() = getResult {
