@@ -8,9 +8,7 @@ import dev.adryanev.dicoding.moviejetpack.ui.base.BaseViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailMovieViewModel @Inject constructor(
-    private val repository: MovieRepository
-) : BaseViewModel() {
+class DetailMovieViewModel @Inject constructor() : BaseViewModel() {
 
    val movie = MutableLiveData<Movie>()
 
