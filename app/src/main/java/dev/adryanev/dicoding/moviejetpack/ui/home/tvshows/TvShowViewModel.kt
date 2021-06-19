@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TvShowViewModel @Inject constructor(
-    val resources: Resources,
     private val tvShowRepository: TvShowRepository
 ) : BaseListViewModel<TvShow>() {
 

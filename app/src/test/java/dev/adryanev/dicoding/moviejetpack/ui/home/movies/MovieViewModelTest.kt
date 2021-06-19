@@ -1,25 +1,27 @@
 package dev.adryanev.dicoding.moviejetpack.ui.home.movies
 
 import androidx.lifecycle.Observer
+import com.nhaarman.mockitokotlin2.verify
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
-import dev.adryanev.dicoding.moviejetpack.utils.mock
 import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
+import dev.adryanev.dicoding.moviejetpack.factory.createMovie
 import dev.adryanev.dicoding.moviejetpack.factory.createMovieListResponse
 import dev.adryanev.dicoding.moviejetpack.ui.BaseViewModelTest
+import dev.adryanev.dicoding.moviejetpack.utils.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import org.junit.Assert
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 
 @ExperimentalCoroutinesApi
-class MovieViewModelTest: BaseViewModelTest(){
+class MovieViewModelTest : BaseViewModelTest() {
 
     private lateinit var viewModel: MovieViewModel
     private val movieRepository = mock<MovieRepository>()
+    private val movie = createMovie()
 
     @Before
     fun setUp() {
@@ -28,27 +30,33 @@ class MovieViewModelTest: BaseViewModelTest(){
 
     @Test
     fun getDataSuccessTest() {
-       testCoroutineRule.runBlockingTest {
-           val fakeData = createMovieListResponse()
-           val observer = mock<Observer<List<Movie>>>()
+        testCoroutineRule.runBlockingTest {
+            val fakeData = createMovieListResponse()
+            val observer = mock<Observer<List<Movie>>>()
 
-           viewModel.itemList.observeForever(observer)
+            viewModel.itemList.observeForever(observer)
 
-           `when`(movieRepository.getMovieList()).thenReturn(fakeData)
-           // when
-           viewModel.loadData()
+            `when`(movieRepository.getMovieList()).thenReturn(fakeData)
+            // when
+            viewModel.loadData()
 
-           // then
-           Assert.assertEquals(4, viewModel.itemList.value?.size)
-           Assert.assertEquals("1", viewModel.itemList.value?.getOrNull(0)?.id)
-           Assert.assertEquals("2", viewModel.itemList.value?.getOrNull(1)?.id)
-           Assert.assertEquals("3", viewModel.itemList.value?.getOrNull(2)?.id)
-           Assert.assertEquals("4", viewModel.itemList.value?.getOrNull(3)?.id)
+            // then
+            assertEquals(4, viewModel.itemList.value?.size)
+            assertEquals(movie.id, viewModel.itemList.value?.getOrNull(0)?.id)
+            assertEquals(movie.title, viewModel.itemList.value?.getOrNull(0)?.title)
+            assertEquals(movie.originalTitle, viewModel.itemList.value?.getOrNull(0)?.originalTitle)
+            assertEquals(movie.originalLanguage, viewModel.itemList.value?.getOrNull(0)?.originalLanguage)
+            assertEquals(movie.backdropPath, viewModel.itemList.value?.getOrNull(0)?.backdropPath)
+            assertEquals(movie.posterPath, viewModel.itemList.value?.getOrNull(0)?.posterPath)
+            assertEquals(movie.genreIds, viewModel.itemList.value?.getOrNull(0)?.genreIds)
+            assertEquals(movie.voteAverage, viewModel.itemList.value?.getOrNull(0)?.voteAverage)
+            assertEquals(movie.voteCount, viewModel.itemList.value?.getOrNull(0)?.voteCount)
+            assertEquals(movie.overview, viewModel.itemList.value?.getOrNull(0)?.overview)
+            assertEquals(movie.popularity, viewModel.itemList.value?.getOrNull(0)?.popularity)
+            assertEquals(movie.mediaType, viewModel.itemList.value?.getOrNull(0)?.mediaType)
 
-           fakeData.collect{
-               Mockito.verify(observer).onChanged()
 
-           }
-       }
+            verify(observer).onChanged(fakeData.first().data?.results)
+        }
     }
 }
