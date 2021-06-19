@@ -10,8 +10,7 @@ import dev.adryanev.dicoding.moviejetpack.ui.BaseViewModelTest
 import dev.adryanev.dicoding.moviejetpack.utils.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import org.junit.Assert
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.`when`

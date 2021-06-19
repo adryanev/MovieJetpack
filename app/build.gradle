@@ -105,7 +105,6 @@ dependencies {
     testImplementation "androidx.room:room-testing:$roomVersion"
 
 
-
     //testing
     testImplementation "junit:junit:$junitVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
