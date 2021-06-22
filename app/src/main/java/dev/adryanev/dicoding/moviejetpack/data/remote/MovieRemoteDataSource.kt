@@ -1,17 +1,15 @@
 package dev.adryanev.dicoding.moviejetpack.data.remote
 
+import dev.adryanev.dicoding.moviejetpack.data.entities.DataResult
 import dev.adryanev.dicoding.moviejetpack.data.remote.api.Webservice
 import dev.adryanev.dicoding.moviejetpack.data.remote.responses.movies.ResponseListMovie
-import dev.adryanev.dicoding.moviejetpack.data.entities.Resource
-import timber.log.Timber
 import javax.inject.Inject
 
-class MovieRemoteDataSource @Inject constructor(private val movieDbWebservice: Webservice) : BaseDataSource() {
+class MovieRemoteDataSource @Inject constructor(private val movieDbWebservice: Webservice) :
+    BaseDataSource<ResponseListMovie>() {
 
-    suspend fun getMovieList(): Resource<ResponseListMovie> = getResult {
-        movieDbWebservice.getMovieList()
+    suspend fun getMovieList(page: Int): DataResult<ResponseListMovie> = getResult {
+        movieDbWebservice.getMovieList(page)
     }
-    suspend fun getTvShowList() = getResult {
-        movieDbWebservice.getTvList()
-    }
+
 }

@@ -19,6 +19,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.signature.ObjectKey
+import com.google.android.material.textview.MaterialTextView
 import dev.adryanev.dicoding.moviejetpack.BuildConfig
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.constants.Constants
@@ -87,6 +88,7 @@ object BindingAdapters {
     @JvmStatic fun ContentLoadingProgressBar.show(isLoading: Boolean?) {
         if (isLoading == true) show() else hide()
     }
+
 
     @BindingAdapter(
         value = [
@@ -187,11 +189,6 @@ object BindingAdapters {
     @BindingAdapter("enableRefresh")
     @JvmStatic fun SwipeRefreshLayout.enableRefresh(enable: Boolean?) {
         isEnabled = enable == true
-    }
-
-    @BindingAdapter("isRefreshing")
-    @JvmStatic fun SwipeRefreshLayout.customRefreshing(refreshing: Boolean?) {
-        isRefreshing = refreshing == true
     }
 
 }

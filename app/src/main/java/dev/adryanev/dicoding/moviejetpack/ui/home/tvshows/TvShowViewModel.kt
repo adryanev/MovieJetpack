@@ -2,6 +2,7 @@ package dev.adryanev.dicoding.moviejetpack.ui.home.tvshows
 
 import android.content.res.Resources
 import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import dev.adryanev.dicoding.moviejetpack.data.repositories.TvShowRepository
@@ -15,16 +16,16 @@ class TvShowViewModel @Inject constructor(
     private val tvShowRepository: TvShowRepository
 ) : BaseListViewModel<TvShow>() {
 
-    override fun loadData() {
-        viewModelScope.launch {
-            try {
-                tvShowRepository.getTvShowList().collect {
-                    onLoadSuccess(it.data?.results)
-                }
-
-            } catch (exception: Exception) {
-                onError(exception)
-            }
-        }
+    init {
+        getTvList()
     }
+   private fun getTvList() = launchPagingAsync(
+       execute = {
+           if(checkIfRequestIsRepeated()) itemList
+           tvShowRepository.getTvShowList().cachedIn(viewModelScope)
+       },
+       onSuccess = {
+           itemList = it
+       }
+   )
 }

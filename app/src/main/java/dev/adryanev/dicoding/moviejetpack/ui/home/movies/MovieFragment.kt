@@ -9,19 +9,19 @@ import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.getNavController
-import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListAdapter
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListFragment
+import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 
 @AndroidEntryPoint
 class MovieFragment : BaseListFragment<FragmentMovieBinding, MovieViewModel, Movie>() {
 
     override val viewModel: MovieViewModel by viewModels()
-
-    override val listAdapter: BaseListAdapter<Movie, out ViewDataBinding>
-       by lazy{MovieListAdapter(
+    override val pagerAdapter: BasePagingAdapter<Movie, out ViewDataBinding> by lazy {
+        MoviePagingAdapter(
             itemClickListener = { toMovieDetail(it) }
         )
-       }
+    }
+
     private fun toMovieDetail(movie: Movie) {
         getNavController()?.navigate(MovieFragmentDirections.actionGlobalDetailFragment(movie))
 
@@ -33,5 +33,6 @@ class MovieFragment : BaseListFragment<FragmentMovieBinding, MovieViewModel, Mov
         get() = viewBinding.rvMovie
     override val layoutId: Int
         get() = R.layout.fragment_movie
+
 
 }

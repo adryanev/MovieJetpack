@@ -4,11 +4,11 @@ import androidx.recyclerview.widget.DiffUtil
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import dev.adryanev.dicoding.moviejetpack.databinding.ItemTvshowBinding
-import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListAdapter
+import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 import dev.adryanev.dicoding.moviejetpack.utils.BindingAdapters.setSingleClick
 
 class TvShowListAdapater(val itemCLickListener: (TvShow) -> Unit = {}) :
-    BaseListAdapter<TvShow, ItemTvshowBinding>(object : DiffUtil.ItemCallback<TvShow>() {
+    BasePagingAdapter<TvShow, ItemTvshowBinding>(object : DiffUtil.ItemCallback<TvShow>() {
         override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow): Boolean =
             oldItem.id == newItem.id
 

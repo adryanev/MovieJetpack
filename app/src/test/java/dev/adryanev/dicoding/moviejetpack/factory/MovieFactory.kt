@@ -1,14 +1,14 @@
 package dev.adryanev.dicoding.moviejetpack.factory
 
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
-import dev.adryanev.dicoding.moviejetpack.data.entities.Resource
+import dev.adryanev.dicoding.moviejetpack.data.entities.Result
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import dev.adryanev.dicoding.moviejetpack.data.remote.responses.movies.ResponseListMovie
 import dev.adryanev.dicoding.moviejetpack.data.remote.responses.tvshows.ResponseListTv
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-fun createMovieListResponse(): Flow<Resource<ResponseListMovie>> = flow {
+fun createMovieListResponse(): Flow<Result<ResponseListMovie>> = flow {
     val response = ResponseListMovie()
     val movie1 = Movie(
         originalTitle = "Cruella",
@@ -55,11 +55,11 @@ fun createMovieListResponse(): Flow<Resource<ResponseListMovie>> = flow {
     response.totalPages = 1000
     response.totalResults = 20000
 
-    emit(Resource.success(response))
+    emit(Result.success(response))
 
 }
 
-fun createTvListResponse(): Flow<Resource<ResponseListTv>> = flow {
+fun createTvListResponse(): Flow<Result<ResponseListTv>> = flow {
     val response = ResponseListTv()
     val tvShow1 = TvShow(
         backdropPath = "/Afp8OhiO0Ajb3NPoCBvfu2pqaeO.jpg",
@@ -89,7 +89,7 @@ fun createTvListResponse(): Flow<Resource<ResponseListTv>> = flow {
     response.totalPages = 1000
     response.totalResults = 20000
 
-    emit(Resource.success(response))
+    emit(Result.success(response))
 
 }
 

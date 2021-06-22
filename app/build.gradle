@@ -104,6 +104,9 @@ dependencies {
     // optional - Test helpers
     testImplementation "androidx.room:room-testing:$roomVersion"
 
+    //paging
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+
 
     //testing
     testImplementation "junit:junit:$junitVersion"

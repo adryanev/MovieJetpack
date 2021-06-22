@@ -21,7 +21,6 @@
             android:id="@+id/refresh_tvshow"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:isRefreshing="@{ viewModel.isRefreshing }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +31,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:listitem="@layout/item_tvshow" />
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_tvshow"
+                tools:itemCount="20"/>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

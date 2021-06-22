@@ -9,8 +9,12 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.adryanev.dicoding.moviejetpack.data.constants.Constants
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
+import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
+import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSourceImpl
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieDao
+import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieRemoteKeyDao
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.TvShowDao
+import dev.adryanev.dicoding.moviejetpack.data.local.dao.TvShowRemoteKeyDao
 import javax.inject.Singleton
 
 @Module
@@ -34,13 +38,28 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideMovieDao(movieDatabase: AppDatabase): MovieDao {
-        return movieDatabase.movieDao()
-    }
+    fun provideMovieDao(movieDatabase: AppDatabase): MovieDao = movieDatabase.movieDao()
 
     @Singleton
     @Provides
-    fun provideTvShowDao(movieDatabase: AppDatabase): TvShowDao {
-        return movieDatabase.tvShowDao()
-    }
+    fun provideTvShowDao(movieDatabase: AppDatabase): TvShowDao = movieDatabase.tvShowDao()
+
+    @Singleton
+    @Provides
+    fun provideMovieRemoteKeyDao(movieDatabase: AppDatabase): MovieRemoteKeyDao =
+        movieDatabase.movieRemoteKeyDao()
+
+    @Singleton
+    @Provides
+    fun provideTvShowRemoteKeyDao(movieDatabase: AppDatabase): TvShowRemoteKeyDao =
+        movieDatabase.tvRemoteKeyDao()
+
+    @Singleton
+    @Provides
+    fun provideLocalDataSource(
+        movieDao: MovieDao,
+        tvShowDao: TvShowDao,
+        movieRemoteKeyDao: MovieRemoteKeyDao,
+        tvRemoteKeyDao: TvShowRemoteKeyDao
+    ): LocalDataSource = LocalDataSourceImpl(movieDao, tvShowDao, movieRemoteKeyDao, tvRemoteKeyDao)
 }

@@ -18,36 +18,27 @@
         android:layout_height="match_parent"
         android:id="@+id/movie_container"
         >
+
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_movie"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:isRefreshing="@{ viewModel.isRefreshing }"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_movie"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                tools:listitem="@layout/item_movie" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:id="@+id/progress_loading"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="@dimen/dp_48"
-            android:layout_height="@dimen/dp_48"
-            android:layout_marginBottom="@dimen/dp_16"
-            app:isLoading="@{  viewModel.isLoading }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            >
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movie"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:itemCount="20"
+                tools:listitem="@layout/item_movie" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

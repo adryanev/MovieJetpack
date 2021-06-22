@@ -1,29 +1,41 @@
 package dev.adryanev.dicoding.moviejetpack.data.repositories.impl
 
-import dev.adryanev.dicoding.moviejetpack.data.entities.Resource
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
+import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
+import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
+import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieDao
+import dev.adryanev.dicoding.moviejetpack.data.mediator.MovieRemoteMediator
 import dev.adryanev.dicoding.moviejetpack.data.remote.MovieRemoteDataSource
-import dev.adryanev.dicoding.moviejetpack.data.remote.responses.movies.ResponseListMovie
 import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
-import dev.adryanev.dicoding.moviejetpack.utils.networkOnlyResource
+import dev.adryanev.dicoding.moviejetpack.utils.networkBoundResource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class MovieRepositoryImpl @Inject constructor(
     private val remoteDataSource: MovieRemoteDataSource,
+    private val localDataSource: LocalDataSource,
+    private val database: AppDatabase,
+    private val pageConfig: PagingConfig
 ) : MovieRepository {
-//    override suspend fun getMovieList() = networkBoundResource(
-//        query = {movieDao.getAllMovie()},
-//        fetch = {remoteDataSource.getMovieList()},
-//        saveFetchResult = {items ->
-//            val result= items.data?.results
-//            Timber.d(result.toString())
-//            movieDao.insert(result)
-//        }
-//    )
 
-    override suspend fun getMovieList(): Flow<Resource<ResponseListMovie>> = networkOnlyResource(
-        fetch = { remoteDataSource.getMovieList() },
-        processResult = { it.data!! }
-    )
+    @ExperimentalPagingApi
+    override suspend fun getMovieList(): Flow<PagingData<Movie>> = Pager(
+        config = pageConfig,
+        remoteMediator = MovieRemoteMediator(remoteDataSource,localDataSource,database)
+    ){
+        localDataSource.getAllMovies()
+    }.flow
+
+    override suspend fun getMovieById(id: Int): Flow<Movie> = withContext(Dispatchers.IO) {
+        localDataSource.findMovieById(id)
+    }
+
 
 }

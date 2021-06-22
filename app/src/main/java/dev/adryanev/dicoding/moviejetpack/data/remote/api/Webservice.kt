@@ -6,14 +6,15 @@ import dev.adryanev.dicoding.moviejetpack.data.remote.responses.tvshows.Response
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface Webservice {
 
     @GET("trending/movie/week")
-    suspend fun getMovieList(): Response<ResponseListMovie>
+    suspend fun getMovieList(@Query("page") page: Int): Response<ResponseListMovie>
 
     @GET("trending/tv/week")
-    suspend fun getTvList(): Response<ResponseListTv>
+    suspend fun getTvList(@Query("page") page: Int): Response<ResponseListTv>
 
 //    @GET("tv/{tv_id}")
 //    suspend fun getTvShow(@Path("tv_id") id:Int) : Response<ResponseTvDetail>

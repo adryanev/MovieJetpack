@@ -11,7 +11,6 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieEntity
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentDetailMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseFragment
 

@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.AsyncDifferConfig
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import java.util.concurrent.Executors
 import dev.adryanev.dicoding.moviejetpack.BR
 
 private interface BaseRecyclerAdapter<Item : Any, ViewBinding : ViewDataBinding> {
@@ -33,30 +31,23 @@ private interface BaseRecyclerAdapter<Item : Any, ViewBinding : ViewDataBinding>
 /**
  * base recycler view adapter
  */
-abstract class BaseListAdapter<Item : Any, ViewBinding : ViewDataBinding>(
+abstract class BasePagingAdapter<Item : Any, ViewBinding : ViewDataBinding>(
     callBack: DiffUtil.ItemCallback<Item>
-) : ListAdapter<Item, BaseViewHolder<ViewBinding>>(
-    AsyncDifferConfig.Builder(callBack)
-        .setBackgroundThreadExecutor(Executors.newSingleThreadExecutor())
-        .build()
+) : PagingDataAdapter<Item, BaseViewHolder<ViewBinding>>(
+    callBack
 ), BaseRecyclerAdapter<Item, ViewBinding> {
 
-    /**
-     * override this with new list to pass check "if (newList == mList)" in AsyncListDiffer
-     */
-    override fun submitList(list: List<Item>?) {
-        super.submitList(ArrayList<Item>(list ?: listOf()))
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<ViewBinding> {
         return BaseViewHolder(
             DataBindingUtil.inflate<ViewBinding>(
-            LayoutInflater.from(parent.context),
-            getLayoutRes(viewType),
-            parent, false
-        ).apply {
-            bindFirstTime(this)
-        })
+                LayoutInflater.from(parent.context),
+                getLayoutRes(viewType),
+                parent, false
+            ).apply {
+                bindFirstTime(this)
+            })
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<ViewBinding>, position: Int) {
