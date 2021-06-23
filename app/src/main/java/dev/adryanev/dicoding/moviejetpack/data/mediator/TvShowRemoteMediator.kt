@@ -14,6 +14,7 @@ import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
 import dev.adryanev.dicoding.moviejetpack.data.remote.TvShowRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -25,26 +26,37 @@ class TvShowRemoteMediator @Inject constructor(
 
     override suspend fun load(loadType: LoadType, state: PagingState<Int, TvShow>): MediatorResult {
 
-        if (loadType == LoadType.PREPEND) {
-            return MediatorResult.Success(endOfPaginationReached = true)
+        Timber.d("load type: $loadType")
+        val loadKey = when (loadType) {
+            LoadType.REFRESH -> {
+                Constants.FIRST_PAGE
+            }
+            LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
+            LoadType.APPEND -> {
+                val remoteKey = getRemoteKeyFromLastItem(state)
+                if (remoteKey?.nextKey == null) {
+                    return MediatorResult.Success(
+                        endOfPaginationReached = true
+                    )
+                }
+                remoteKey.nextKey
+            }
         }
 
-        val page = computePage(loadType, state)
-
-        when (val apiResult = service.getTvShowList(page = page)) {
+        when (val apiResult = service.getTvShowList(page = loadKey)) {
             is DataResult.Success -> {
-                val moviesFromNetwork = apiResult.data.results
-                val endOfPaginationReached = moviesFromNetwork?.isEmpty()
+                val moviesFromNetwork = apiResult.data.results!!
+                val endOfPaginationReached = moviesFromNetwork.isEmpty()
                 db.withTransaction {
                     //Invalidate local cache if we are resubmitting paging
                     if (loadType == LoadType.REFRESH) {
-                        localDataSource.clearAllMoviesTable()
+                        localDataSource.clearAllTvTable()
                     }
-                    insertNewPageData(moviesFromNetwork, endOfPaginationReached!!, page)
+                    insertNewPageData(moviesFromNetwork, endOfPaginationReached, loadKey)
 
                 }
                 return MediatorResult.Success(
-                    endOfPaginationReached = endOfPaginationReached!!
+                    endOfPaginationReached = endOfPaginationReached
                 )
             }
             is DataResult.Error -> {
@@ -54,7 +66,6 @@ class TvShowRemoteMediator @Inject constructor(
             }
         }
 
-        return MediatorResult.Error(Exception())
     }
 
     private suspend fun insertNewPageData(
@@ -63,31 +74,17 @@ class TvShowRemoteMediator @Inject constructor(
         page: Int
     ) {
         val nextKey = if (endOfPageReached) null else page + 1
-        val prevKey = if (page == Constants.FIRST_PAGE) null else page - 1
         val key = movieFromNetwork?.map {
-            TvShowRemoteKey(repoId = it.id!!, nextKey = nextKey, prevKey = prevKey)
-        }
-
-        if (movieFromNetwork != null) {
-            localDataSource.insertAllTvShow(movieFromNetwork)
+            TvShowRemoteKey(repoId = it.id, nextKey = nextKey)
         }
         if (key != null) {
             localDataSource.insertAllTvKeys(key)
         }
-    }
-
-    private suspend fun computePage(loadType: LoadType, state: PagingState<Int, TvShow>): Int =
-        when (loadType) {
-            LoadType.REFRESH -> {
-                val remoteKey = getRemoteKeyFromCurrentPosition(state)
-                remoteKey?.nextKey?.minus(1) ?: Constants.FIRST_PAGE
-            }
-            LoadType.APPEND -> {
-                getRemoteKeyFromLastItem(state)?.nextKey
-            }
-            else -> null
+        if (movieFromNetwork != null) {
+            localDataSource.insertAllTvShow(movieFromNetwork)
         }
-            ?: throw Exception("Problem within transactions, Page cannot be found.")
+
+    }
 
     private suspend fun getRemoteKeyFromLastItem(state: PagingState<Int, TvShow>): TvShowRemoteKey? =
         withContext(Dispatchers.IO) {
@@ -96,14 +93,5 @@ class TvShowRemoteMediator @Inject constructor(
             }
         }
 
-    private suspend fun getRemoteKeyFromCurrentPosition(state: PagingState<Int, TvShow>): TvShowRemoteKey? =
-        withContext(Dispatchers.IO) {
-            state.anchorPosition?.let { position ->
-                state.closestItemToPosition(position)?.id?.let { id ->
-                    localDataSource.findTvRemoteKeyById(id)
-                }
-
-            }
-        }
 
 }

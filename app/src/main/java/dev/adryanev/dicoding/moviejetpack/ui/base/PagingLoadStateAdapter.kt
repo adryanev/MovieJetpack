@@ -1,4 +1,4 @@
-package dev.adryanev.dicoding.moviejetpack.utils
+package dev.adryanev.dicoding.moviejetpack.ui.base
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

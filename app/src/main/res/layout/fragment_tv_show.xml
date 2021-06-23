@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListViewModel" />
+            type="dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagedViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tv_container"

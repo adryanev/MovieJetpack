@@ -9,11 +9,11 @@ import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.getNavController
-import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListFragment
+import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseMediatorPagedFragment
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 
 @AndroidEntryPoint
-class MovieFragment : BaseListFragment<FragmentMovieBinding, MovieViewModel, Movie>() {
+class MovieFragment : BaseMediatorPagedFragment<FragmentMovieBinding, MovieViewModel, Movie>() {
 
     override val viewModel: MovieViewModel by viewModels()
     override val pagerAdapter: BasePagingAdapter<Movie, out ViewDataBinding> by lazy {

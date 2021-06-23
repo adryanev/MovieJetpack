@@ -42,5 +42,5 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providePagingConfig(): PagingConfig = PagingConfig(pageSize = Constants.PAGE_SIZE, prefetchDistance = 2)
+    fun providePagingConfig(): PagingConfig = PagingConfig(pageSize = Constants.PAGE_SIZE, enablePlaceholders = false)
 }

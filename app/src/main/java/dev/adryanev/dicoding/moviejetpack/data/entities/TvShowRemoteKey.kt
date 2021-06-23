@@ -5,8 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "tvshow_remote_key")
 data class TvShowRemoteKey(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
      val repoId: Int,
      val nextKey: Int?,
-     val prevKey: Int?
 )

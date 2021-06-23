@@ -26,12 +26,16 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
 
     @ExperimentalPagingApi
-    override suspend fun getMovieList(): Flow<PagingData<Movie>> = Pager(
-        config = pageConfig,
-        remoteMediator = MovieRemoteMediator(remoteDataSource,localDataSource,database)
-    ){
-        localDataSource.getAllMovies()
-    }.flow
+    override suspend fun getMovieList(): Flow<PagingData<Movie>> {
+        val localPagingSourceFactory = { localDataSource.getAllMovies() }
+        val remoteMediator =
+            MovieRemoteMediator(remoteDataSource, localDataSource, database)
+        return Pager(
+            pageConfig,
+            pagingSourceFactory = localPagingSourceFactory,
+            remoteMediator = remoteMediator
+        ).flow
+    }
 
     override suspend fun getMovieById(id: Int): Flow<Movie> = withContext(Dispatchers.IO) {
         localDataSource.findMovieById(id)

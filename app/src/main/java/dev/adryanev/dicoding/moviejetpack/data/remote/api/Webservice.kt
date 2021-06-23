@@ -10,10 +10,10 @@ import retrofit2.http.Query
 
 interface Webservice {
 
-    @GET("trending/movie/week")
+    @GET("discover/movie")
     suspend fun getMovieList(@Query("page") page: Int): Response<ResponseListMovie>
 
-    @GET("trending/tv/week")
+    @GET("discover/tv")
     suspend fun getTvList(@Query("page") page: Int): Response<ResponseListTv>
 
 //    @GET("tv/{tv_id}")

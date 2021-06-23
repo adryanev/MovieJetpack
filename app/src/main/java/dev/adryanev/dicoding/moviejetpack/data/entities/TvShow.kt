@@ -50,7 +50,7 @@ data class TvShow(
 
     @PrimaryKey(autoGenerate = false)
     @Json(name="id")
-    val id: Int? = null,
+    var id: Int,
 
     @Json(name="vote_count")
     val voteCount: Int? = null

@@ -14,6 +14,7 @@ class GenreConverters {
 
     @TypeConverter
     fun stringToList(value: String): List<Int> {
+        if(value.isEmpty()) return listOf()
         val intList = mutableListOf<Int>()
         value.split(",").forEach {
             intList.add(it.toInt())

@@ -9,12 +9,12 @@ import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentTvShowBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.getNavController
-import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseListFragment
+import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseMediatorPagedFragment
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieFragmentDirections
 
 @AndroidEntryPoint
-class TvShowFragment : BaseListFragment<FragmentTvShowBinding, TvShowViewModel, TvShow>() {
+class TvShowFragment : BaseMediatorPagedFragment<FragmentTvShowBinding, TvShowViewModel, TvShow>() {
 
 
     private fun toDetail(tvShow: TvShow) {
