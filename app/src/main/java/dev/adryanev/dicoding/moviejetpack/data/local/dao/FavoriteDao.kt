@@ -11,11 +11,11 @@ interface FavoriteDao {
 
     @Transaction
     @Query("Select * FROM favorite where type = :type")
-    fun getFavoriteMovies(type: String = Movie.TYPE): List<MovieUiAndFavorite>
+    suspend fun getFavoriteMovies(type: String = Movie.TYPE): List<MovieUiAndFavorite>
 
     @Transaction
     @Query("Select * FROM favorite where type = :type")
-    fun getFavoriteTvShows(type: String = TvShow.TYPE): List<MovieUiAndFavorite>
+    suspend fun getFavoriteTvShows(type: String = TvShow.TYPE): List<MovieUiAndFavorite>
 
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

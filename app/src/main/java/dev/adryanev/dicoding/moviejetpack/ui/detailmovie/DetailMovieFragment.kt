@@ -27,15 +27,6 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovie
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        viewBinding.toolbarDetail.setupWithNavController(navController, appBarConfiguration)
-
-
-        viewBinding.toolbarDetail.apply {
-            title = ""
-
-        }
         viewModel.apply {
             args.movie.let {
                 movie.value = it

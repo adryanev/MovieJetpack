@@ -34,12 +34,6 @@ class MovieFragment : BaseMediatorPagedFragment<FragmentMovieBinding, MovieViewM
         getNavController()?.navigate(MovieFragmentDirections.toMovieDetail(movie))
 
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.movieFragment, R.id.tvShowFragment, R.id.favoriteFragment))
-        viewBinding.toolbarMovie.setupWithNavController(findNavController(), appBarConfiguration)
-    }
     override val swipeRefreshLayout: SwipeRefreshLayout
         get() = viewBinding.refreshMovie
     override val recyclerView: RecyclerView

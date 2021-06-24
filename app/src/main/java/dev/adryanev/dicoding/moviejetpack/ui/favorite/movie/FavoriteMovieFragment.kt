@@ -4,6 +4,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
@@ -13,7 +14,7 @@ import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagedFragment
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 import dev.adryanev.dicoding.moviejetpack.ui.favorite.FavoriteAdapter
 import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieFragmentDirections
-
+@AndroidEntryPoint
 class FavoriteMovieFragment : BasePagedFragment<FragmentFavoriteMovieBinding, FavoriteMovieViewModel, MovieUiAndFavorite>() {
 
     override val viewModel: FavoriteMovieViewModel by viewModels()

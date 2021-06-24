@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movies where type = :type order by createdAt DESC")
+    @Query("SELECT * FROM movies where type = :type order by createdAt ASC")
     fun getAllMovie(type: String = Movie.TYPE): PagingSource<Int, MovieUi>
 
     @Query("SELECT * FROM movies where id = :id and type = :type")

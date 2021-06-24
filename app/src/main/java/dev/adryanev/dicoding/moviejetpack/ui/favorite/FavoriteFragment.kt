@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentFavoriteBinding
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentHomeBinding
@@ -18,7 +19,7 @@ import dev.adryanev.dicoding.moviejetpack.ui.base.BaseFragment
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseViewModel
 import dev.adryanev.dicoding.moviejetpack.ui.home.HomeViewModel
 import dev.adryanev.dicoding.moviejetpack.ui.home.SectionPagerAdapter
-
+@AndroidEntryPoint
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, BaseViewModel>() {
 
     override val layoutId: Int
@@ -27,10 +28,6 @@ class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, BaseViewModel>() 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.favoriteFragment))
-        viewBinding.toolbarFavorite.setupWithNavController(navController, appBarConfiguration)
 
         val sectionPagerAdapter = SectionPagerAdapter(this)
         viewBinding.viewPager.adapter = sectionPagerAdapter

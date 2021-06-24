@@ -14,14 +14,7 @@
             android:id="@+id/appbar_favorite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_favorite"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="?colorPrimary"
-                app:tabTextColor="?colorOnPrimary">
 
-            </androidx.appcompat.widget.Toolbar>
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tab"
                 style="@style/AppTabLayout"

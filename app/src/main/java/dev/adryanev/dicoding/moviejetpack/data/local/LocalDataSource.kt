@@ -11,8 +11,8 @@ interface LocalDataSource {
     fun findMovieRemoteKeyById(id:Int): MovieRemoteKey?
     fun findMovieById(id:Int): Flow<MovieUi>
     fun findTvShowById(id: Int): Flow<MovieUi>
-    fun getAllFavoriteMovie(): List<MovieUiAndFavorite>
-    fun getAllFavoriteTvShow(): List<MovieUiAndFavorite>
+    suspend fun getAllFavoriteMovie(): List<MovieUiAndFavorite>
+    suspend fun getAllFavoriteTvShow(): List<MovieUiAndFavorite>
     suspend fun insertAllMovieKeys(list: List<MovieRemoteKey>)
     suspend fun insertAllMovies(list: List<MovieUi>)
     suspend fun clearAllTable(type: String)
