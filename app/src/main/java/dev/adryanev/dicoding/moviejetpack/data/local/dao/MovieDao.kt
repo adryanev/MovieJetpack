@@ -1,34 +1,44 @@
 package dev.adryanev.dicoding.moviejetpack.data.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.paging.PagingSource
 import androidx.room.*
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
+import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movie order by popularity DESC")
-    fun getAllMovie(): PagingSource<Int, Movie>
+    @Query("SELECT * FROM movies where type = :type order by createdAt DESC")
+    fun getAllMovie(type: String = Movie.TYPE): PagingSource<Int, MovieUi>
 
-    @Query("SELECT * FROM movie where id = :id")
-    fun getMovie(id:Int): Flow<Movie>
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movies: List<Movie>?)
+    @Query("SELECT * FROM movies where id = :id and type = :type")
+    fun getMovie(id: Int, type: String = Movie.TYPE): Flow<MovieUi>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(movie: Movie)
+    suspend fun insertMovie(movies: List<MovieUi>?)
 
-    @Query("DELETE FROM movie")
-    suspend fun deleteAll()
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMovie(movie: MovieUi)
+
+    @Query("DELETE FROM movies where type= :type")
+    suspend fun deleteAll(type: String)
 
     @Delete
-   suspend fun delete(movie: Movie)
+    suspend fun delete(movie: MovieUi)
 
     @Delete
-    suspend fun delete(movie: List<Movie>)
+    suspend fun delete(movie: List<MovieUi>)
 
-    @Query("SELECT COUNT(id) from movie")
-    suspend fun count(): Int
+    @Query("SELECT COUNT(id) from movies where type= :type")
+    suspend fun countMovie(type: String = Movie.TYPE): Int
+
+    @Query("SELECT COUNT(id) from movies where type= :type")
+    suspend fun countTvShow(type: String = TvShow.TYPE): Int
+
+    @Query("SELECT * FROM movies where type = :type order by createdAt DESC")
+    fun getAllTvShow(type: String = TvShow.TYPE): PagingSource<Int, MovieUi>
+
+    @Query("SELECT * FROM movies where id = :id and type = :type")
+    fun getTvShow(id: Int, type: String = TvShow.TYPE): Flow<MovieUi>
 }

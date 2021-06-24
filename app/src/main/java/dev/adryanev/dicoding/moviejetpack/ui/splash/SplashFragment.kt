@@ -33,6 +33,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, BaseViewModel>() {
     }
 
     private fun navigateToMain() {
-        getNavController()?.navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+        getNavController()?.navigate(SplashFragmentDirections.actionSplashFragmentToNavBottomBar())
     }
 }

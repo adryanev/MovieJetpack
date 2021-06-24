@@ -9,7 +9,6 @@ import dev.adryanev.dicoding.moviejetpack.BuildConfig
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = "movie")
 data class Movie(
 
     @Json(name="overview")
@@ -48,7 +47,6 @@ data class Movie(
     @Json(name="popularity")
     val popularity: Double? = null,
 
-    @PrimaryKey(autoGenerate = false)
     @Json(name="id")
     val id: Int? = null,
 
@@ -58,9 +56,12 @@ data class Movie(
     @Json(name="vote_count")
     val voteCount: Int? = null
 ):Parcelable {
-    fun getFullBackdropPath() =
-        if (backdropPath.isNullOrBlank()) null else BuildConfig.SMALL_IMAGE_URL + backdropPath
 
     fun getFullPosterPath() =
         if (posterPath.isNullOrBlank()) null else BuildConfig.SMALL_IMAGE_URL + posterPath
+
+    companion object {
+        const val TYPE = "movie"
+    }
+
 }

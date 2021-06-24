@@ -38,7 +38,6 @@ abstract class BasePagingAdapter<Item : Any, ViewBinding : ViewDataBinding>(
 ), BaseRecyclerAdapter<Item, ViewBinding> {
 
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<ViewBinding> {
         return BaseViewHolder(
             DataBindingUtil.inflate<ViewBinding>(

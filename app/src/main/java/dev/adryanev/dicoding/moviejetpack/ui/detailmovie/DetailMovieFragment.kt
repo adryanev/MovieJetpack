@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentDetailMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseFragment
 
@@ -47,7 +48,7 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovie
         }
     }
 
-    fun onShareClick(movie: Movie) {
+    fun onShareClick(movie: MovieUi) {
         val mimeType = "text/plain"
         ShareCompat.IntentBuilder(requireContext())
             .setType(mimeType)

@@ -18,14 +18,14 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 abstract class BaseMediatorPagedFragment<ViewBinding : ViewDataBinding, ViewModel : BasePagedViewModel<Item>, Item : Any> :
-    BaseFragment<ViewBinding, ViewModel>() {
+    BasePagedFragment<ViewBinding, ViewModel, Item>() {
 
-    abstract val pagerAdapter: BasePagingAdapter<Item, out ViewDataBinding>
-    abstract val swipeRefreshLayout: SwipeRefreshLayout?
-    abstract val recyclerView: RecyclerView?
+    abstract override val pagerAdapter: BasePagingAdapter<Item, out ViewDataBinding>
+    abstract override val swipeRefreshLayout: SwipeRefreshLayout?
+    abstract override val recyclerView: RecyclerView?
 
 
-    open fun getLayoutManager(): RecyclerView.LayoutManager =
+    override fun getLayoutManager(): RecyclerView.LayoutManager =
         LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,8 +33,8 @@ abstract class BaseMediatorPagedFragment<ViewBinding : ViewDataBinding, ViewMode
         setUpLoadRefresh()
     }
 
-    var job: Job? = null
-    open fun setUpLoadRefresh() {
+    override fun setUpLoadRefresh() {
+        job?.cancel()
         with(pagerAdapter) {
             swipeRefreshLayout?.setOnRefreshListener { refresh() }
             recyclerView?.adapter = withLoadStateHeaderAndFooter(
@@ -71,6 +71,7 @@ abstract class BaseMediatorPagedFragment<ViewBinding : ViewDataBinding, ViewMode
     override fun onDestroyView() {
         super.onDestroyView()
         recyclerView?.adapter = null
+        job?.cancel()
     }
 
 }

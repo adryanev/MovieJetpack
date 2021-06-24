@@ -15,6 +15,6 @@ interface MovieRemoteKeyDao {
     @Query("SELECT * FROM movie_remote_key WHERE repoId = :repoId")
     fun getRemoteKeyById(repoId: Int): MovieRemoteKey?
 
-    @Query("DELETE FROM movie_remote_key")
-    suspend fun clearRemoteKeys()
+    @Query("DELETE FROM movie_remote_key where type= :type")
+    suspend fun clearRemoteKeys(type: String)
 }

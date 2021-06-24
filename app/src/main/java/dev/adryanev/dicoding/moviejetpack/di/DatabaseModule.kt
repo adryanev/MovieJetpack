@@ -11,10 +11,9 @@ import dev.adryanev.dicoding.moviejetpack.data.constants.Constants
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSourceImpl
+import dev.adryanev.dicoding.moviejetpack.data.local.dao.FavoriteDao
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieDao
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieRemoteKeyDao
-import dev.adryanev.dicoding.moviejetpack.data.local.dao.TvShowDao
-import dev.adryanev.dicoding.moviejetpack.data.local.dao.TvShowRemoteKeyDao
 import javax.inject.Singleton
 
 @Module
@@ -40,9 +39,6 @@ class DatabaseModule {
     @Provides
     fun provideMovieDao(movieDatabase: AppDatabase): MovieDao = movieDatabase.movieDao()
 
-    @Singleton
-    @Provides
-    fun provideTvShowDao(movieDatabase: AppDatabase): TvShowDao = movieDatabase.tvShowDao()
 
     @Singleton
     @Provides
@@ -51,15 +47,14 @@ class DatabaseModule {
 
     @Singleton
     @Provides
-    fun provideTvShowRemoteKeyDao(movieDatabase: AppDatabase): TvShowRemoteKeyDao =
-        movieDatabase.tvRemoteKeyDao()
+    fun provideFavoriteDao(movieDatabase: AppDatabase): FavoriteDao =
+        movieDatabase.favoriteDao()
 
     @Singleton
     @Provides
     fun provideLocalDataSource(
         movieDao: MovieDao,
-        tvShowDao: TvShowDao,
         movieRemoteKeyDao: MovieRemoteKeyDao,
-        tvRemoteKeyDao: TvShowRemoteKeyDao
-    ): LocalDataSource = LocalDataSourceImpl(movieDao, tvShowDao, movieRemoteKeyDao, tvRemoteKeyDao)
+        favoriteDao: FavoriteDao
+    ): LocalDataSource = LocalDataSourceImpl(movieDao,movieRemoteKeyDao,favoriteDao)
 }

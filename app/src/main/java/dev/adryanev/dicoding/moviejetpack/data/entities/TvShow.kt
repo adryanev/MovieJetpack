@@ -57,5 +57,8 @@ data class TvShow(
 ): Parcelable {
     fun getFullPosterPath() =
         if (posterPath.isNullOrBlank()) null else BuildConfig.SMALL_IMAGE_URL + posterPath
+    companion object {
+        const val TYPE = "tvshow"
+    }
 }
 

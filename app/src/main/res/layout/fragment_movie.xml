@@ -13,20 +13,32 @@
             name="viewModel"
             type="dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieViewModel" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/movie_container"
+
         >
 
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_movie"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="?colorPrimary"
+                app:tabTextColor="?colorOnPrimary">
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_movie"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?actionBarSize"
+
             >
 
             <androidx.recyclerview.widget.RecyclerView
@@ -40,5 +52,5 @@
                 tools:listitem="@layout/item_movie" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -6,31 +6,33 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
-import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
-import dev.adryanev.dicoding.moviejetpack.databinding.FragmentTvShowBinding
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
+import dev.adryanev.dicoding.moviejetpack.databinding.FragmentMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.getNavController
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BaseMediatorPagedFragment
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieFragmentDirections
+import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MoviePagingAdapter
 
 @AndroidEntryPoint
-class TvShowFragment : BaseMediatorPagedFragment<FragmentTvShowBinding, TvShowViewModel, TvShow>() {
+class TvShowFragment :
+    BaseMediatorPagedFragment<FragmentMovieBinding, TvShowViewModel, MovieUi>() {
 
 
-    private fun toDetail(tvShow: TvShow) {
-        getNavController()?.navigate(MovieFragmentDirections.actionGlobalDetailTvShowFragment(tvShow))
+    private fun toDetail(movie: MovieUi) {
+        getNavController()?.navigate(TvShowFragmentDirections.toMovieDetail(movie))
 
     }
 
     override val swipeRefreshLayout: SwipeRefreshLayout
-        get() = viewBinding.refreshTvshow
+        get() = viewBinding.refreshMovie
     override val recyclerView: RecyclerView
-        get() = viewBinding.rvTvshow
+        get() = viewBinding.rvMovie
     override val viewModel: TvShowViewModel by viewModels()
     override val layoutId: Int
-        get() = R.layout.fragment_tv_show
-    override val pagerAdapter: BasePagingAdapter<TvShow, out ViewDataBinding> by lazy {
-        TvShowListAdapater(itemCLickListener = { toDetail(it) })
+        get() = R.layout.fragment_movie
+    override val pagerAdapter: BasePagingAdapter<MovieUi, out ViewDataBinding> by lazy {
+        MoviePagingAdapter(itemClickListener = { toDetail(it) })
     }
 
 }

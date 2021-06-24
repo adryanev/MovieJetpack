@@ -1,26 +1,18 @@
 package dev.adryanev.dicoding.moviejetpack.ui.home.tvshows
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import com.nhaarman.mockitokotlin2.verify
-import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
-import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
-import dev.adryanev.dicoding.moviejetpack.data.repositories.TvShowRepository
-import dev.adryanev.dicoding.moviejetpack.factory.createMovieListResponse
 import dev.adryanev.dicoding.moviejetpack.factory.createTvListResponse
 import dev.adryanev.dicoding.moviejetpack.factory.createTvShow
 import dev.adryanev.dicoding.moviejetpack.ui.BaseViewModelTest
-import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieViewModel
 import dev.adryanev.dicoding.moviejetpack.utils.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
 import org.junit.Assert.*
-import org.mockito.Mock
 import org.mockito.Mockito
 
 @ExperimentalCoroutinesApi

@@ -1,4 +1,4 @@
-package dev.adryanev.dicoding.moviejetpack.data.mediator
+package dev.adryanev.dicoding.moviejetpack.data.paging.mediator
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
@@ -7,14 +7,17 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import dev.adryanev.dicoding.moviejetpack.data.constants.Constants
 import dev.adryanev.dicoding.moviejetpack.data.entities.DataResult
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieRemoteKey
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
-import dev.adryanev.dicoding.moviejetpack.data.entities.TvShowRemoteKey
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
+import dev.adryanev.dicoding.moviejetpack.data.mapper.toMovieUi
 import dev.adryanev.dicoding.moviejetpack.data.remote.TvShowRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -22,9 +25,9 @@ class TvShowRemoteMediator @Inject constructor(
     private val service: TvShowRemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val db: AppDatabase
-) : RemoteMediator<Int, TvShow>() {
+) : RemoteMediator<Int, MovieUi>() {
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, TvShow>): MediatorResult {
+    override suspend fun load(loadType: LoadType, state: PagingState<Int, MovieUi>): MediatorResult {
 
         Timber.d("load type: $loadType")
         val loadKey = when (loadType) {
@@ -50,7 +53,7 @@ class TvShowRemoteMediator @Inject constructor(
                 db.withTransaction {
                     //Invalidate local cache if we are resubmitting paging
                     if (loadType == LoadType.REFRESH) {
-                        localDataSource.clearAllTvTable()
+                        localDataSource.clearAllTable(TvShow.TYPE)
                     }
                     insertNewPageData(moviesFromNetwork, endOfPaginationReached, loadKey)
 
@@ -75,21 +78,26 @@ class TvShowRemoteMediator @Inject constructor(
     ) {
         val nextKey = if (endOfPageReached) null else page + 1
         val key = movieFromNetwork?.map {
-            TvShowRemoteKey(repoId = it.id, nextKey = nextKey)
+            MovieRemoteKey(
+                repoId = it.id,
+                nextKey = nextKey,
+                type = TvShow.TYPE,
+                createdAt = Date()
+            )
         }
         if (key != null) {
-            localDataSource.insertAllTvKeys(key)
+            localDataSource.insertAllMovieKeys(key)
         }
         if (movieFromNetwork != null) {
-            localDataSource.insertAllTvShow(movieFromNetwork)
+            localDataSource.insertAllMovies(movieFromNetwork.map { it.toMovieUi() })
         }
 
     }
 
-    private suspend fun getRemoteKeyFromLastItem(state: PagingState<Int, TvShow>): TvShowRemoteKey? =
+    private suspend fun getRemoteKeyFromLastItem(state: PagingState<Int, MovieUi>): MovieRemoteKey? =
         withContext(Dispatchers.IO) {
             state.lastItemOrNull()?.let {
-                localDataSource.findTvRemoteKeyById(it.id!!)
+                it.id?.let { it1 -> localDataSource.findMovieRemoteKeyById(it1) }
             }
         }
 

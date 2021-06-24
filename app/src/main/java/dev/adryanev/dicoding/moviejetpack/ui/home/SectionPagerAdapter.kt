@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import dev.adryanev.dicoding.moviejetpack.R
+import dev.adryanev.dicoding.moviejetpack.ui.favorite.movie.FavoriteMovieFragment
+import dev.adryanev.dicoding.moviejetpack.ui.favorite.tvshow.FavoriteTvShowFragment
 import dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieFragment
 import dev.adryanev.dicoding.moviejetpack.ui.home.tvshows.TvShowFragment
 
@@ -25,8 +27,8 @@ class SectionPagerAdapter(fragment: Fragment) :
 
     override fun createFragment(position: Int): Fragment =
         when (position) {
-            0 -> MovieFragment()
-            1 -> TvShowFragment()
+            0 -> FavoriteMovieFragment()
+            1 -> FavoriteTvShowFragment()
             else -> Fragment()
         }
 
