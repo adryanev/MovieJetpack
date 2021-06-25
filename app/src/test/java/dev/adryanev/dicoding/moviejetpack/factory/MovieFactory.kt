@@ -1,15 +1,23 @@
 package dev.adryanev.dicoding.moviejetpack.factory
 
+import androidx.paging.PagingData
+import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
-import dev.adryanev.dicoding.moviejetpack.data.entities.Result
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
-import dev.adryanev.dicoding.moviejetpack.data.remote.responses.movies.ResponseListMovie
-import dev.adryanev.dicoding.moviejetpack.data.remote.responses.tvshows.ResponseListTv
+import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
+import dev.adryanev.dicoding.moviejetpack.data.mapper.toMovieUI
+import dev.adryanev.dicoding.moviejetpack.data.mapper.toMovieUi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-fun createMovieListResponse(): Flow<Result<ResponseListMovie>> = flow {
-    val response = ResponseListMovie()
+fun createMovieListResponse(): Flow<PagingData<MovieUi>> = flow {
+
+    emit(PagingData.from(expectedMovieResult()))
+
+}
+
+fun expectedMovieResult(): List<MovieUi> {
     val movie1 = Movie(
         originalTitle = "Cruella",
         posterPath = "/A0knvX7rlwTyZSKj8H5NiARb45.jpg",
@@ -26,7 +34,7 @@ fun createMovieListResponse(): Flow<Result<ResponseListMovie>> = flow {
         originalLanguage = "en",
         popularity = 6683.453,
         mediaType = "movie"
-    )
+    ).toMovieUI()
     val movie2 = Movie(
         video = false,
         voteAverage = 8.4,
@@ -47,20 +55,13 @@ fun createMovieListResponse(): Flow<Result<ResponseListMovie>> = flow {
         title = "The Conjuring : The Devil Made Me Do It",
         popularity = 1615.27,
         mediaType = "movie"
-    )
-    val movie3 = Movie(id = 3)
-    val movie4 = Movie(id = 4)
-    response.results = arrayListOf(movie1, movie2, movie3, movie4)
-    response.page = 1
-    response.totalPages = 1000
-    response.totalResults = 20000
-
-    emit(Result.success(response))
-
+    ).toMovieUI()
+    val movie3 = Movie(id = 3).toMovieUI()
+    val movie4 = Movie(id = 4).toMovieUI()
+    return arrayListOf(movie1, movie2, movie3, movie4)
 }
 
-fun createTvListResponse(): Flow<Result<ResponseListTv>> = flow {
-    val response = ResponseListTv()
+fun expectedTvResult(): List<MovieUi> {
     val tvShow1 = TvShow(
         backdropPath = "/Afp8OhiO0Ajb3NPoCBvfu2pqaeO.jpg",
         originalName = "Loki",
@@ -80,20 +81,20 @@ fun createTvListResponse(): Flow<Result<ResponseListTv>> = flow {
         id = 84958,
         popularity = 702.015,
         mediaType = "tv"
-    )
-    val tvShow2 = TvShow(id = 2)
-    val tvShow3 = TvShow(id = 3)
-    val tvShow4 = TvShow(id = 4)
-    response.results = arrayListOf(tvShow1, tvShow2, tvShow3, tvShow4)
-    response.page = 1
-    response.totalPages = 1000
-    response.totalResults = 20000
+    ).toMovieUi()
+    val tvShow2 = TvShow(id = 2).toMovieUi()
+    val tvShow3 = TvShow(id = 3).toMovieUi()
+    val tvShow4 = TvShow(id = 4).toMovieUi()
+    return arrayListOf(tvShow1, tvShow2, tvShow3, tvShow4)
+}
 
-    emit(Result.success(response))
+fun createTvListResponse(): Flow<PagingData<MovieUi>> = flow {
+
+    emit(PagingData.from(expectedMovieResult()))
 
 }
 
-fun createTvShow(): TvShow = TvShow(
+fun createTvShow(): MovieUi = TvShow(
     backdropPath = "/Afp8OhiO0Ajb3NPoCBvfu2pqaeO.jpg",
     originalName = "Loki",
     genreIds = listOf(
@@ -112,9 +113,9 @@ fun createTvShow(): TvShow = TvShow(
     id = 84958,
     popularity = 702.015,
     mediaType = "tv"
-)
+).toMovieUi()
 
-fun createMovie(): Movie = Movie(
+fun createMovie(): MovieUi = Movie(
     originalTitle = "Cruella",
     posterPath = "/A0knvX7rlwTyZSKj8H5NiARb45.jpg",
     id = 337404,
@@ -130,4 +131,34 @@ fun createMovie(): Movie = Movie(
     originalLanguage = "en",
     popularity = 6683.453,
     mediaType = "movie"
-)
+).toMovieUI()
+
+fun expectedFavoriteResult(): List<FavoriteAndMovie> {
+    val movie = createMovie()
+    return listOf(
+        FavoriteAndMovie(
+            Favorite(movieId = movie.id, favoriteId = 1, movieType = movie.type),
+            movie
+        ),
+        FavoriteAndMovie(
+            Favorite(movieId = movie.id, favoriteId = 1, movieType = movie.type),
+            movie
+        ),
+        FavoriteAndMovie(
+            Favorite(movieId = movie.id, favoriteId = 1, movieType = movie.type),
+            movie
+        ),
+        FavoriteAndMovie(
+            Favorite(movieId = movie.id, favoriteId = 1, movieType = movie.type),
+            movie
+        )
+    )
+}
+
+fun createFavoriteResponse(): Flow<PagingData<FavoriteAndMovie>> = flow {
+    emit(
+        PagingData.from(
+            expectedFavoriteResult()
+        )
+    )
+}

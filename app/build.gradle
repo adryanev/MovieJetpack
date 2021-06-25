@@ -109,6 +109,7 @@ dependencies {
 
 
     //testing
+    testImplementation 'app.cash.turbine:turbine:0.5.2'
     testImplementation "junit:junit:$junitVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
