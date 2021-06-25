@@ -4,9 +4,7 @@ import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.verify
 import dev.adryanev.dicoding.moviejetpack.data.repositories.FavoriteRepository
 import dev.adryanev.dicoding.moviejetpack.factory.createFavoriteResponse
-import dev.adryanev.dicoding.moviejetpack.factory.createMovieListResponse
-import dev.adryanev.dicoding.moviejetpack.factory.expectedFavoriteResult
-import dev.adryanev.dicoding.moviejetpack.factory.expectedMovieResult
+import dev.adryanev.dicoding.moviejetpack.factory.expectedFavoriteMovieResult
 import dev.adryanev.dicoding.moviejetpack.ui.BaseViewModelTest
 import dev.adryanev.dicoding.moviejetpack.utils.collectData
 import dev.adryanev.dicoding.moviejetpack.utils.mock
@@ -23,7 +21,7 @@ class FavoriteMovieViewModelTest : BaseViewModelTest() {
 
     private lateinit var viewModel: FavoriteMovieViewModel
     private val repository = mock<FavoriteRepository>()
-    private val favorite = expectedFavoriteResult()
+    private val favorite = expectedFavoriteMovieResult()
 
     @Before
     fun setUp() {
