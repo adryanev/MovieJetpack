@@ -5,11 +5,12 @@ import androidx.room.*
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
+import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movies where type = :type order by createdAt ASC")
+    @Query("SELECT * FROM movies where type = :type order by createdAt asc")
     fun getAllMovie(type: String = Movie.TYPE): PagingSource<Int, MovieUi>
 
     @Query("SELECT * FROM movies where id = :id and type = :type")
@@ -36,9 +37,28 @@ interface MovieDao {
     @Query("SELECT COUNT(id) from movies where type= :type")
     suspend fun countTvShow(type: String = TvShow.TYPE): Int
 
-    @Query("SELECT * FROM movies where type = :type order by createdAt DESC")
+    @Query("SELECT * FROM movies where type = :type order by createdAt ASC")
     fun getAllTvShow(type: String = TvShow.TYPE): PagingSource<Int, MovieUi>
 
     @Query("SELECT * FROM movies where id = :id and type = :type")
     fun getTvShow(id: Int, type: String = TvShow.TYPE): Flow<MovieUi>
+
+    @Query("Select * FROM movies where type = :type and favorite = 1 order by createdAt asc")
+    suspend fun getFavoriteMovies(type: String = Movie.TYPE): List<MovieUi>
+
+    @Query("Select * FROM movies where type = :type and favorite = 1 order by createdAt asc")
+    suspend fun getFavoriteTvShows(type: String = TvShow.TYPE): List<MovieUi>
+
+    @Query("Select * FROM movies where type = :type and favorite = 1 and id = :movieId")
+    fun getFavoriteMovieById(movieId: Int, type: String = Movie.TYPE): Flow<MovieUi>
+
+    @Query("Select * FROM movies where type = :type and favorite = 1 and id = :movieId")
+    fun getFavoriteTvShowById(movieId: Int, type: String = TvShow.TYPE): Flow<MovieUi>
+
+    @Query("Select createdAt From movies where type = :type order by createdAt asc limit 1")
+    suspend fun lastUpdated(type: String = Movie.TYPE): Long
+
+    @Update
+    suspend fun updateMovies(movie: MovieUi)
+
 }

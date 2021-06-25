@@ -23,6 +23,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val navView: BottomNavigationView = viewBinding.bottomNav
+        val toolbar = viewBinding.toolbarMovie
 
 //        val navHostFragment = supportFragmentManager
 //            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
@@ -30,11 +31,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 //        val navController = navHostFragment?.navController
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
-            navController.graph
+            setOf(R.id.movieFragment, R.id.tvShowFragment, R.id.favoriteFragment)
         )
         navController.let {
-            setupActionBarWithNavController(it, appBarConfiguration)
             navView.setupWithNavController(it)
+            toolbar.setupWithNavController(it,appBarConfiguration)
             it.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
                     R.id.detailMovieFragment -> {
@@ -42,17 +43,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
                     }
                     R.id.splashFragment -> {
                         navView.visibility = View.GONE
-                        supportActionBar?.hide()
-
+                        toolbar.visibility = View.GONE
                     }
                     else -> {
                         navView.visibility = View.VISIBLE
-                        supportActionBar?.show()
+                        toolbar.visibility = View.VISIBLE
 
                     }
                 }
             }
         }
+        setSupportActionBar(toolbar)
+
 
     }
 }

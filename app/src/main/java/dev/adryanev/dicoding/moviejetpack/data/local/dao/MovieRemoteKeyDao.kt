@@ -12,7 +12,7 @@ interface MovieRemoteKeyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(remoteKey: List<MovieRemoteKey>)
 
-    @Query("SELECT * FROM movie_remote_key WHERE repoId = :repoId order by createdAt asc")
+    @Query("SELECT * FROM movie_remote_key WHERE repoId = :repoId order by createdAt asc limit 1")
     fun getRemoteKeyById(repoId: Int): MovieRemoteKey?
 
     @Query("DELETE FROM movie_remote_key where type= :type")

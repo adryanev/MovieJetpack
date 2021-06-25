@@ -1,15 +1,19 @@
 package dev.adryanev.dicoding.moviejetpack.data.entities.relations
 
+import android.os.Parcelable
 import androidx.room.Embedded
 import androidx.room.Relation
 import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class MovieUiAndFavorite(
-    @Embedded val movie: MovieUi,
+    @Embedded
+    val favorite: Favorite?,
     @Relation(
-        parentColumn = "id",
-        entityColumn = "movieId"
+        parentColumn = "movieId",
+        entityColumn = "id"
     )
-    val favorite: Favorite
-)
+    val movie: MovieUi
+):Parcelable

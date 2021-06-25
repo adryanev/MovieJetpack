@@ -18,7 +18,7 @@ class FavoriteTvShowViewModel @Inject constructor(val favoriteRepository: Favori
 
     private fun getFavoriteMovies() = launchPagingAsync(
         execute = {
-            favoriteRepository.getFavoriteMovies().cachedIn(viewModelScope)
+            favoriteRepository.getFavoriteTvShows().cachedIn(viewModelScope)
         },
         onSuccess = {
             itemList = it

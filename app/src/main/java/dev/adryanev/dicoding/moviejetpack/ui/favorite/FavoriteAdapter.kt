@@ -14,7 +14,7 @@ class FavoriteAdapter(val itemClickListener: (MovieUiAndFavorite) -> Unit = {}) 
             oldItem: MovieUiAndFavorite,
             newItem: MovieUiAndFavorite
         ): Boolean {
-            return oldItem.favorite.id == newItem.favorite.id
+            return oldItem.movie.id  == newItem.movie.id
         }
 
         override fun areContentsTheSame(

@@ -20,7 +20,7 @@ fun Movie.toMovieUI(): MovieUi {
         voteAverage = voteAverage,
         popularity = popularity,
         voteCount = voteCount,
-        type = Movie.TYPE,
+        type = "movie",
         createdAt = Date()
     )
 }
@@ -40,7 +40,7 @@ fun TvShow.toMovieUi(): MovieUi {
         voteAverage = voteAverage,
         popularity = popularity,
         voteCount = voteCount,
-        type = TvShow.TYPE,
+        type = "tvshow",
         createdAt = Date()
 
     )

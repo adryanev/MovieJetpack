@@ -2,6 +2,7 @@ package dev.adryanev.dicoding.moviejetpack.data.local
 
 import androidx.paging.PagingSource
 import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
+import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieRemoteKey
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
@@ -44,5 +45,21 @@ class LocalDataSourceImpl @Inject constructor(
         movieDao.deleteAll(type)
         movieRemoteKeyDao.clearRemoteKeys(type)
     }
+
+    override suspend fun setMovieFavorite(movieUi: MovieUiAndFavorite, state: Boolean) {
+        if(state){
+
+            favoriteDao.insertFavorite(Favorite(movieId = movieUi.movie.id!!, type = movieUi.movie.type))
+
+        }
+        else{
+            favoriteDao.deleteFavorite(movieUi.favorite!!)
+
+        }
+    }
+
+    override fun getFavoriteMovieById(id: Int): Flow<MovieUiAndFavorite> {
+return  favoriteDao.getFavoriteMovieById(id)   }
+
 
 }

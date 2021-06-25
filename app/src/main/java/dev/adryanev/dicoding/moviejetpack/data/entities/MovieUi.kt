@@ -25,7 +25,8 @@ data class MovieUi(
     var popularity: Double? = null,
     var voteCount: Int? = null,
     var type: String? = null,
-    var createdAt: Date? = null
+    var createdAt: Date? = null,
+    var favorite: Boolean = false
 ) : Parcelable {
     fun getFullPosterPath() =
         if (posterPath.isNullOrBlank()) null else BuildConfig.SMALL_IMAGE_URL + posterPath

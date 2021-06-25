@@ -18,13 +18,9 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="dev.adryanev.dicoding.moviejetpack.ui.home.HomeFragment"
-        android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
-    <fragment
         android:id="@+id/favoriteFragment"
         android:name="dev.adryanev.dicoding.moviejetpack.ui.favorite.FavoriteFragment"
+        android:label="@string/favorite"
         tools:layout="@layout/fragment_favorite"/>
     <fragment
         android:id="@+id/movieFragment"
@@ -54,7 +50,7 @@
     <fragment
         android:id="@+id/detailMovieFragment"
         android:name="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieFragment"
-        android:label="DetailMovieFragment"
+        android:label="DetailMovie"
         tools:layout="@layout/fragment_detail_movie" >
         <argument
             android:name="movie"

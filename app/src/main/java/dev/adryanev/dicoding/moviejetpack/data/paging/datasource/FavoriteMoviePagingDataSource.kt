@@ -3,6 +3,7 @@ package dev.adryanev.dicoding.moviejetpack.data.paging.datasource
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
+import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
 import javax.inject.Inject

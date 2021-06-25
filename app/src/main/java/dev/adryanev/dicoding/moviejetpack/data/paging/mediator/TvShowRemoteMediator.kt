@@ -6,10 +6,7 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import dev.adryanev.dicoding.moviejetpack.data.constants.Constants
-import dev.adryanev.dicoding.moviejetpack.data.entities.DataResult
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieRemoteKey
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
-import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
+import dev.adryanev.dicoding.moviejetpack.data.entities.*
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
 import dev.adryanev.dicoding.moviejetpack.data.mapper.toMovieUi
@@ -27,9 +24,11 @@ class TvShowRemoteMediator @Inject constructor(
     private val db: AppDatabase
 ) : RemoteMediator<Int, MovieUi>() {
 
-    override suspend fun load(loadType: LoadType, state: PagingState<Int, MovieUi>): MediatorResult {
+    override suspend fun load(
+        loadType: LoadType,
+        state: PagingState<Int, MovieUi>
+    ): MediatorResult {
 
-        Timber.d("load type: $loadType")
         val loadKey = when (loadType) {
             LoadType.REFRESH -> {
                 Constants.FIRST_PAGE
@@ -42,6 +41,8 @@ class TvShowRemoteMediator @Inject constructor(
                         endOfPaginationReached = true
                     )
                 }
+                Timber.d("last remoteKey ${remoteKey.repoId}")
+                Timber.d("nextKey = ${remoteKey.nextKey}")
                 remoteKey.nextKey
             }
         }
@@ -97,7 +98,7 @@ class TvShowRemoteMediator @Inject constructor(
     private suspend fun getRemoteKeyFromLastItem(state: PagingState<Int, MovieUi>): MovieRemoteKey? =
         withContext(Dispatchers.IO) {
             state.lastItemOrNull()?.let {
-                it.id?.let { it1 -> localDataSource.findMovieRemoteKeyById(it1) }
+                localDataSource.findMovieRemoteKeyById(it.id!!)
             }
         }
 
