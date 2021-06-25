@@ -44,7 +44,7 @@ abstract class BasePagedFragment<ViewBinding : ViewDataBinding, ViewModel : Base
 
             with(viewModel) {
                 job = lifecycleScope.launch {
-                    itemList?.collectLatest {
+                    itemList?.collect {
                         submitData(lifecycle, it)
                     }
                 }

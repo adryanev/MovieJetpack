@@ -5,10 +5,13 @@ import android.view.*
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import dagger.hilt.android.AndroidEntryPoint
 import dev.adryanev.dicoding.moviejetpack.R
+import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
+import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentDetailMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseFragment
@@ -51,7 +54,13 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovie
         viewModel.apply {
             args.movie.let {
                 movie.value = it
+
+                lifecycleScope.launchWhenCreated {
+                    getMovieFavorite(it.id!!)
+                }
+
             }
+
         }
     }
 
@@ -69,13 +78,9 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovie
 
         this.menu = menu
         activity?.menuInflater?.inflate(R.menu.appbar_menu, menu)
-        viewModel.movieUiAndFavorite.observe(viewLifecycleOwner, {
-            Timber.d(it.toString())
-            setBookmarkState(viewModel.movieUiAndFavorite.value != null)
-
-
+        viewModel.favorite.observe(viewLifecycleOwner, {
+            setBookmarkState(it != null)
         })
-
 
     }
 
@@ -83,11 +88,15 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovie
         if (item.itemId == R.id.action_favourite) {
 
             viewModel.setBookmark(
-                viewModel.movieUiAndFavorite.value ?: MovieUiAndFavorite(
-                    null,
-                    viewModel.movie.value!!
+                viewModel.favorite.value ?: FavoriteAndMovie(
+                    favorite =Favorite(
+                        movieId = viewModel.movie.value?.id!!,
+                        movieType = viewModel.movie.value?.type
+                    ),
+                    movie = viewModel.movie.value!!,
+
                 ),
-                viewModel.movieUiAndFavorite.value == null
+                viewModel.favorite.value == null
             )
             return true
         }

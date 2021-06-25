@@ -2,8 +2,7 @@ package dev.adryanev.dicoding.moviejetpack.data.repositories.impl
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
-import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
+import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
 import dev.adryanev.dicoding.moviejetpack.data.paging.datasource.FavoriteMoviePagingDataSource
 import dev.adryanev.dicoding.moviejetpack.data.paging.datasource.FavoriteTvShowPagingDataSource
@@ -22,13 +21,14 @@ class FavoriteRepositoryImpl @Inject constructor(val localDataSource: LocalDataS
     override suspend fun getFavoriteTvShows() =
         Pager(pagingConfig) { FavoriteTvShowPagingDataSource(localDataSource) }.flow
 
-    override suspend fun setMovieFavorite(movie: MovieUiAndFavorite, state: Boolean) {
+    override suspend fun setMovieFavorite(movie: FavoriteAndMovie, state: Boolean) {
         localDataSource.setMovieFavorite(movie, state)
     }
 
-    override suspend fun getFavoriteMovieById(id: Int): Flow<MovieUiAndFavorite> {
+    override suspend fun getFavoriteMovieById(id: Int): Flow<FavoriteAndMovie> {
         return localDataSource.getFavoriteMovieById(id)
     }
+
 
 
 }

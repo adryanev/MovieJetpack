@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite" />
+            type="dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

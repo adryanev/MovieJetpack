@@ -1,11 +1,9 @@
 package dev.adryanev.dicoding.moviejetpack.data.local
 
 import androidx.paging.PagingSource
-import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
-import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieRemoteKey
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
-import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
+import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.FavoriteDao
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieDao
 import dev.adryanev.dicoding.moviejetpack.data.local.dao.MovieRemoteKeyDao
@@ -27,11 +25,11 @@ class LocalDataSourceImpl @Inject constructor(
     override fun findMovieById(id: Int): Flow<MovieUi> = movieDao.getMovie(id)
 
     override fun findTvShowById(id: Int): Flow<MovieUi> = movieDao.getTvShow(id)
-    override suspend fun getAllFavoriteMovie(): List<MovieUiAndFavorite> {
+    override suspend fun getAllFavoriteMovie(): List<FavoriteAndMovie> {
         return favoriteDao.getFavoriteMovies()
     }
 
-    override suspend fun getAllFavoriteTvShow(): List<MovieUiAndFavorite> {
+    override suspend fun getAllFavoriteTvShow(): List<FavoriteAndMovie> {
         return favoriteDao.getFavoriteTvShows()
     }
 
@@ -46,20 +44,24 @@ class LocalDataSourceImpl @Inject constructor(
         movieRemoteKeyDao.clearRemoteKeys(type)
     }
 
-    override suspend fun setMovieFavorite(movieUi: MovieUiAndFavorite, state: Boolean) {
-        if(state){
+    override suspend fun setMovieFavorite(movieUi: FavoriteAndMovie, state: Boolean) {
+        if (state) {
 
-            favoriteDao.insertFavorite(Favorite(movieId = movieUi.movie.id!!, type = movieUi.movie.type))
+            movieUi.favorite?.let {
+                favoriteDao.insertFavorite(
+                    it
+                )
+            }
 
-        }
-        else{
-            favoriteDao.deleteFavorite(movieUi.favorite!!)
+        } else {
+            movieUi.favorite?.let { favoriteDao.deleteFavorite(it) }
 
         }
     }
 
-    override fun getFavoriteMovieById(id: Int): Flow<MovieUiAndFavorite> {
-return  favoriteDao.getFavoriteMovieById(id)   }
+    override fun getFavoriteMovieById(id: Int): Flow<FavoriteAndMovie> {
+        return favoriteDao.getFavoriteMovieById(id)
+    }
 
 
 }

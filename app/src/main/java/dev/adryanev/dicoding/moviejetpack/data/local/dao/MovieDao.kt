@@ -43,18 +43,6 @@ interface MovieDao {
     @Query("SELECT * FROM movies where id = :id and type = :type")
     fun getTvShow(id: Int, type: String = TvShow.TYPE): Flow<MovieUi>
 
-    @Query("Select * FROM movies where type = :type and favorite = 1 order by createdAt asc")
-    suspend fun getFavoriteMovies(type: String = Movie.TYPE): List<MovieUi>
-
-    @Query("Select * FROM movies where type = :type and favorite = 1 order by createdAt asc")
-    suspend fun getFavoriteTvShows(type: String = TvShow.TYPE): List<MovieUi>
-
-    @Query("Select * FROM movies where type = :type and favorite = 1 and id = :movieId")
-    fun getFavoriteMovieById(movieId: Int, type: String = Movie.TYPE): Flow<MovieUi>
-
-    @Query("Select * FROM movies where type = :type and favorite = 1 and id = :movieId")
-    fun getFavoriteTvShowById(movieId: Int, type: String = TvShow.TYPE): Flow<MovieUi>
-
     @Query("Select createdAt From movies where type = :type order by createdAt asc limit 1")
     suspend fun lastUpdated(type: String = Movie.TYPE): Long
 

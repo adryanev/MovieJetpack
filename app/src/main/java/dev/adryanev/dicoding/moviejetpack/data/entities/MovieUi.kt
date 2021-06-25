@@ -1,9 +1,11 @@
 package dev.adryanev.dicoding.moviejetpack.data.entities
 
 import android.os.Parcelable
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import dev.adryanev.dicoding.moviejetpack.BuildConfig
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -26,9 +28,8 @@ data class MovieUi(
     var voteCount: Int? = null,
     var type: String? = null,
     var createdAt: Date? = null,
-    var favorite: Boolean = false
+
 ) : Parcelable {
     fun getFullPosterPath() =
         if (posterPath.isNullOrBlank()) null else BuildConfig.SMALL_IMAGE_URL + posterPath
-
 }

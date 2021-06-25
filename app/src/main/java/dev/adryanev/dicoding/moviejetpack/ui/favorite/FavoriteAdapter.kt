@@ -2,24 +2,24 @@ package dev.adryanev.dicoding.moviejetpack.ui.favorite
 
 import androidx.recyclerview.widget.DiffUtil
 import dev.adryanev.dicoding.moviejetpack.R
-import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
+import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
 import dev.adryanev.dicoding.moviejetpack.databinding.ItemFavoriteBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagingAdapter
 import dev.adryanev.dicoding.moviejetpack.utils.BindingAdapters.setSingleClick
 
-class FavoriteAdapter(val itemClickListener: (MovieUiAndFavorite) -> Unit = {}) :
-    BasePagingAdapter<MovieUiAndFavorite, ItemFavoriteBinding>(object :
-        DiffUtil.ItemCallback<MovieUiAndFavorite>() {
+class FavoriteAdapter(val itemClickListener: (FavoriteAndMovie) -> Unit = {}) :
+    BasePagingAdapter<FavoriteAndMovie, ItemFavoriteBinding>(object :
+        DiffUtil.ItemCallback<FavoriteAndMovie>() {
         override fun areItemsTheSame(
-            oldItem: MovieUiAndFavorite,
-            newItem: MovieUiAndFavorite
+            oldItem: FavoriteAndMovie,
+            newItem: FavoriteAndMovie
         ): Boolean {
-            return oldItem.movie.id  == newItem.movie.id
+            return oldItem.favorite?.favoriteId == newItem.favorite?.favoriteId
         }
 
         override fun areContentsTheSame(
-            oldItem: MovieUiAndFavorite,
-            newItem: MovieUiAndFavorite
+            oldItem: FavoriteAndMovie,
+            newItem: FavoriteAndMovie
         ): Boolean {
             return oldItem.favorite == newItem.favorite
         }
