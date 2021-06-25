@@ -17,7 +17,7 @@ class FavoriteTvShowPagingDataSource @Inject constructor(private val localDataSo
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, FavoriteAndMovie> {
         val pageNumber = params.key ?: INITIAL_PAGE_INDEX
-        val favoriteList = localDataSource.getAllFavoriteTvShow()
+        val favoriteList = listOf<FavoriteAndMovie>()
         return LoadResult.Page(
             data = favoriteList,
             prevKey = if (pageNumber == INITIAL_PAGE_INDEX) null else pageNumber - 1,

@@ -16,10 +16,10 @@ class FavoriteRepositoryImpl @Inject constructor(val localDataSource: LocalDataS
     private val pagingConfig = PagingConfig(10)
 
     override suspend fun getFavoriteMovies() =
-        Pager(pagingConfig) { FavoriteMoviePagingDataSource(localDataSource = localDataSource) }.flow
+        Pager(pagingConfig) { localDataSource.getAllFavoriteMovie() }.flow
 
     override suspend fun getFavoriteTvShows() =
-        Pager(pagingConfig) { FavoriteTvShowPagingDataSource(localDataSource) }.flow
+        Pager(pagingConfig,pagingSourceFactory = {localDataSource.getAllFavoriteTvShow()}).flow
 
     override suspend fun setMovieFavorite(movie: FavoriteAndMovie, state: Boolean) {
         localDataSource.setMovieFavorite(movie, state)

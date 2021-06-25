@@ -7,6 +7,7 @@ import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMov
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import dev.adryanev.dicoding.moviejetpack.data.repositories.FavoriteRepository
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagedViewModel
+import kotlinx.coroutines.flow.distinctUntilChanged
 import javax.inject.Inject
 
 @HiltViewModel

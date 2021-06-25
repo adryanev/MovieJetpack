@@ -21,7 +21,7 @@ class FavoriteAdapter(val itemClickListener: (FavoriteAndMovie) -> Unit = {}) :
             oldItem: FavoriteAndMovie,
             newItem: FavoriteAndMovie
         ): Boolean {
-            return oldItem.favorite == newItem.favorite
+            return oldItem == newItem
         }
 
     }) {

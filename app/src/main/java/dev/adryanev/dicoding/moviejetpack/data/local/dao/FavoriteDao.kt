@@ -1,5 +1,6 @@
 package dev.adryanev.dicoding.moviejetpack.data.local.dao
 
+import androidx.paging.PagingSource
 import androidx.room.*
 import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
@@ -20,11 +21,11 @@ interface FavoriteDao {
 //    suspend fun getFavoriteTvShows(): List<MovieUiAndFavorite>
  @Transaction
     @Query("Select * FROM favorite where movieType = 'movie' order by created_at asc")
-    suspend fun getFavoriteMovies(): List<FavoriteAndMovie>
+    fun getFavoriteMovies(): PagingSource<Int,FavoriteAndMovie>
 
     @Transaction
     @Query("Select * FROM favorite where movieType = 'tvshow' order by created_at asc")
-    suspend fun getFavoriteTvShows(): List<FavoriteAndMovie>
+    fun getFavoriteTvShows(): PagingSource<Int,FavoriteAndMovie>
 
     @Transaction
     @Query("Select * From favorite where movieId = :movieId limit 1")
