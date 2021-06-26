@@ -4,9 +4,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.swipeUp
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -42,7 +44,7 @@ class MainActivityTest {
 
     @Test
     fun loadTvShows() {
-        onView(withText(R.string.tv_show)).perform(click())
+        onView(withId(R.id.tvShowFragment)).perform(click())
         onView(withId(R.id.rv_movie))
             .check(matches(isDisplayed()))
         onView(withId(R.id.rv_movie))
@@ -68,7 +70,7 @@ class MainActivityTest {
 
     @Test
     fun loadDetailFromTvShow() {
-        onView(withId(R.id.favoriteFragment)).perform(click())
+        onView(withId(R.id.tvShowFragment)).perform(click())
         onView(withId(R.id.rv_movie)).perform(
             actionOnItemAtPosition<RecyclerView.ViewHolder>(
                 0,
@@ -84,7 +86,58 @@ class MainActivityTest {
         onView(withId(R.id.overview)).check(matches(isDisplayed()))
     }
 
-    fun loadMovieFavorite() {
+    @Test
+    fun loadFavoriteMovie() {
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie))
+            .perform(swipeUp())
+        onView(withId(R.id.rv_movie)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.action_favourite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.favoriteFragment)).perform(click())
+        onView(withId(R.id.rv_favorite))
+            .perform(swipeUp())
+        onView(withId(R.id.rv_favorite)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.action_favourite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+    }
 
+    @Test
+    fun loadFavoriteTvShow() {
+        onView(withId(R.id.tvShowFragment)).perform(click())
+        onView(withId(R.id.rv_movie)).check(matches(isDisplayed()))
+        onView(withId(R.id.rv_movie))
+            .perform(swipeUp())
+        onView(withId(R.id.rv_movie)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.action_favourite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
+        onView(withId(R.id.favoriteFragment)).perform(click())
+        onView(withText(R.string.tv_fav)).perform(click())
+
+        onView(withId(R.id.rv_favorite))
+            .perform(swipeUp())
+        onView(withId(R.id.rv_favorite)).perform(
+            actionOnItemAtPosition<RecyclerView.ViewHolder>(
+                0,
+                click()
+            )
+        )
+        onView(withId(R.id.action_favourite)).perform(click())
+        onView(isRoot()).perform(ViewActions.pressBack())
     }
 }

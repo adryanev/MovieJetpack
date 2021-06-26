@@ -10,8 +10,10 @@
     <string name="share">share</string>
     <string name="genre">Genre1, Genre2, Genre3</string>
     <string name="movie">Movie</string>
+    <string name="movie_fav">Movie Favorite</string>
     <string name="duration">%d Minutes</string>
     <string name="tv_show">TV Show</string>
+    <string name="tv_fav">TV Favorite</string>
     <string name="share_text">Tonton %s sekarang juga!</string>
     <string name="share_title">Bagikan konten ini sekarang.</string>
 

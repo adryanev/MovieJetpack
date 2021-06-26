@@ -16,7 +16,7 @@ class SectionPagerAdapter(fragment: Fragment) :
 
     companion object {
         @StringRes
-        val TAB_TITLES = intArrayOf(R.string.movie, R.string.tv_show)
+        val TAB_TITLES = intArrayOf(R.string.movie_fav, R.string.tv_fav)
         const val NUM_PAGES = 2
     }
 
