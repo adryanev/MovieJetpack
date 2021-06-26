@@ -181,7 +181,7 @@ class DetailMovieViewModelTest : BaseViewModelTest() {
         }
     }
     @Test
-    fun setBookmark(){
+    fun setFavoriteMovie(){
         runBlockingTest {
             val favorite = arrayListOf<FavoriteAndMovie>()
 
@@ -191,6 +191,7 @@ class DetailMovieViewModelTest : BaseViewModelTest() {
 
             detailMovieViewModel.setBookmark(favoriteMovie, true)
             verify(favoriteRepository).setMovieFavorite(favoriteMovie,true)
+            assertEquals(1,favorite.size)
 
             `when`(favoriteRepository.setMovieFavorite(favoriteMovie, false)).then {
                 favorite.remove(favoriteMovie)
@@ -198,7 +199,30 @@ class DetailMovieViewModelTest : BaseViewModelTest() {
 
             detailMovieViewModel.setBookmark(favoriteMovie, false)
             verify(favoriteRepository).setMovieFavorite(favoriteMovie,false)
+            assertEquals(0, favorite.size)
 
+        }
+    }
+    @Test
+    fun setFavoriteTvShow(){
+        runBlockingTest {
+            val favorite = arrayListOf<FavoriteAndMovie>()
+
+            `when`(favoriteRepository.setMovieFavorite(favoriteTvShow, true)).then {
+                favorite.add(favoriteTvShow)
+            }
+
+            detailMovieViewModel.setBookmark(favoriteTvShow, true)
+            verify(favoriteRepository).setMovieFavorite(favoriteTvShow,true)
+            assertEquals(1,favorite.size)
+
+            `when`(favoriteRepository.setMovieFavorite(favoriteTvShow, false)).then {
+                favorite.remove(favoriteTvShow)
+            }
+
+            detailMovieViewModel.setBookmark(favoriteTvShow, false)
+            verify(favoriteRepository).setMovieFavorite(favoriteTvShow,false)
+            assertEquals(0, favorite.size)
 
         }
     }

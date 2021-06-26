@@ -3,7 +3,7 @@ package dev.adryanev.dicoding.moviejetpack.ui.favorite.movie
 import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.verify
 import dev.adryanev.dicoding.moviejetpack.data.repositories.FavoriteRepository
-import dev.adryanev.dicoding.moviejetpack.factory.createFavoriteResponse
+import dev.adryanev.dicoding.moviejetpack.factory.createFavoriteMovieResponse
 import dev.adryanev.dicoding.moviejetpack.factory.expectedFavoriteMovieResult
 import dev.adryanev.dicoding.moviejetpack.ui.BaseViewModelTest
 import dev.adryanev.dicoding.moviejetpack.utils.collectData
@@ -33,7 +33,7 @@ class FavoriteMovieViewModelTest : BaseViewModelTest() {
     @Test
     fun getFavoriteMovie() {
         testCoroutineRule.runBlockingTest {
-            val fakeData = createFavoriteResponse()
+            val fakeData = createFavoriteMovieResponse()
 
             Mockito.`when`(repository.getFavoriteMovies()).thenReturn(fakeData)
 

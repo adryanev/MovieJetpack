@@ -162,13 +162,22 @@ fun expectedFavoriteTvShowResult(): List<FavoriteAndMovie> {
     )
 }
 
-fun createFavoriteResponse(): Flow<PagingData<FavoriteAndMovie>> = flow {
+fun createFavoriteMovieResponse(): Flow<PagingData<FavoriteAndMovie>> = flow {
     emit(
         PagingData.from(
             expectedFavoriteMovieResult()
         )
     )
 }
+
+fun createFavoriteTvShowResponse(): Flow<PagingData<FavoriteAndMovie>> = flow {
+    emit(
+        PagingData.from(
+            expectedFavoriteTvShowResult()
+        )
+    )
+}
+
 
 fun createFavoriteMovie(): FavoriteAndMovie {
     val movie = createMovie()

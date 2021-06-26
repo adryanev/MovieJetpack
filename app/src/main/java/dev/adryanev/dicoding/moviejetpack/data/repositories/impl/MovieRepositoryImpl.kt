@@ -35,11 +35,6 @@ class MovieRepositoryImpl @Inject constructor(
         ).flow
     }
 
-//    @ExperimentalPagingApi
-//    override suspend fun getMovieList(): Flow<PagingData<MovieUi>> =
-//        Pager(
-//            pageConfig,
-//        ) { MoviePagingDataSource(remoteDataSource) }.flow
 
     override suspend fun getMovieById(id: Int): Flow<MovieUi> = withContext(Dispatchers.IO) {
         localDataSource.findMovieById(id)

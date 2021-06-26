@@ -1,39 +1,63 @@
 package dev.adryanev.dicoding.moviejetpack.data.repositories.impl
 
-import com.nhaarman.mockitokotlin2.stub
+import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.verify
-import dev.adryanev.dicoding.moviejetpack.data.remote.MovieRemoteDataSource
+import dev.adryanev.dicoding.moviejetpack.data.repositories.BaseRepositoryTest
 import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
+import dev.adryanev.dicoding.moviejetpack.factory.createMovie
 import dev.adryanev.dicoding.moviejetpack.factory.createMovieListResponse
 import dev.adryanev.dicoding.moviejetpack.utils.TestCoroutineRule
+import dev.adryanev.dicoding.moviejetpack.utils.collectData
 import dev.adryanev.dicoding.moviejetpack.utils.mock
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.Mockito.`when`
+import kotlin.time.Duration
+import kotlin.time.ExperimentalTime
 
 @ExperimentalCoroutinesApi
-class MovieRepositoryTest {
+class MovieRepositoryTest :BaseRepositoryTest() {
 
     private val repository = mock<MovieRepository>()
-    private val remoteDataSource = mock<MovieRemoteDataSource>()
+    val movie = createMovie()
 
-    @get:Rule
-    val testCoroutineRule = TestCoroutineRule()
-
-
+    @ExperimentalTime
     @Test
     fun getMovieList() {
-//        testCoroutineRule.runBlockingTest {
-//           `when`(repository.getMovieList()).thenReturn(createMovieListResponse())
-//            val response = repository.getMovieList().first()
-//            verify(repository).getMovieList()
-//            assertNotNull(response)
-//            assertEquals(4, response.data?.results?.size)
-//        }
+        testCoroutineRule.runBlockingTest {
+            `when`(repository.getMovieList()).thenReturn(createMovieListResponse())
+            val response = repository.getMovieList()
+            verify(repository).getMovieList()
+
+            launchTest {
+                response.test(timeout = Duration.ZERO) {
+                    val data = expectItem().collectData()
+
+                    assertNotNull(data)
+                    assertEquals(4, data.size)
+                    assertEquals(movie.id, data[0].id)
+                    assertEquals(movie.title, data[0].title)
+                    assertEquals(movie.originalTitle, data[0].originalTitle)
+                    assertEquals(movie.originalLanguage, data[0].originalLanguage)
+                    assertEquals(movie.backdropPath, data[0].backdropPath)
+                    assertEquals(movie.posterPath, data[0].posterPath)
+                    assertEquals(movie.genreIds, data[0].genreIds)
+                    assertEquals(movie.voteAverage, data[0].voteAverage)
+                    assertEquals(movie.voteCount, data[0].voteCount)
+                    assertEquals(movie.overview, data[0].overview)
+                    assertEquals(movie.popularity, data[0].popularity)
+                    assertEquals(movie.mediaType, data[0].mediaType)
+
+                    expectComplete()
+                }
+            }
+
+        }
 
     }
 }
