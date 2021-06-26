@@ -180,4 +180,26 @@ class DetailMovieViewModelTest : BaseViewModelTest() {
             verify(observer).onChanged(detailMovieViewModel.favorite.value)
         }
     }
+    @Test
+    fun setBookmark(){
+        runBlockingTest {
+            val favorite = arrayListOf<FavoriteAndMovie>()
+
+            `when`(favoriteRepository.setMovieFavorite(favoriteMovie, true)).then {
+                favorite.add(favoriteMovie)
+            }
+
+            detailMovieViewModel.setBookmark(favoriteMovie, true)
+            verify(favoriteRepository).setMovieFavorite(favoriteMovie,true)
+
+            `when`(favoriteRepository.setMovieFavorite(favoriteMovie, false)).then {
+                favorite.remove(favoriteMovie)
+            }
+
+            detailMovieViewModel.setBookmark(favoriteMovie, false)
+            verify(favoriteRepository).setMovieFavorite(favoriteMovie,false)
+
+
+        }
+    }
 }
