@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_nav_bottom_bar"
+            app:destination="@id/movieFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.favorite.FavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_favorite"/>
+    <fragment
+        android:id="@+id/movieFragment"
+        android:label="@string/movie"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.home.movies.MovieFragment"
+        tools:layout="@layout/fragment_movie">
+        <action
+            android:id="@+id/action_movieFragment_to_tvShowFragment"
+            app:destination="@id/tvShowFragment" />
+        <action
+            android:id="@+id/action_movieFragment_to_favoriteFragment"
+            app:destination="@id/favoriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tvShowFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.home.tvshows.TvShowFragment"
+        tools:layout="@layout/fragment_movie"
+        android:label="@string/tv_show"/>
+
+    <fragment
+        android:id="@+id/favoriteMovieFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.favorite.movie.FavoriteMovieFragment"
+        android:label="FavoriteMovieFragment" />
+    <fragment
+        android:id="@+id/favoriteTvShowFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.favorite.tvshow.FavoriteTvShowFragment" />
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieFragment"
+        android:label="DetailMovie"
+        tools:layout="@layout/fragment_detail_movie" >
+        <argument
+            android:name="movie"
+            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi"
+            />
+    </fragment>
+
+    <action
+        android:id="@+id/to_movie_detail"
+        app:destination="@id/detailMovieFragment"
+        app:enterAnim="@anim/slide_in_right"
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right" >
+        <argument
+            android:name="movie"
+            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi"
+            />
+    </action>
+
+
+</navigation>
