@@ -26,7 +26,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideResources(context: Context) : Resources = context.resources
+    fun provideResources(context: Context): Resources = context.resources
 
     @Singleton
     @Provides
@@ -42,5 +42,6 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun providePagingConfig(): PagingConfig = PagingConfig(pageSize = Constants.PAGE_SIZE, enablePlaceholders = false)
+    fun providePagingConfig(): PagingConfig =
+        PagingConfig(pageSize = Constants.PAGE_SIZE, enablePlaceholders = false)
 }

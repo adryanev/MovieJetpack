@@ -1,13 +1,12 @@
-package dev.adryanev.dicoding.moviejetpack.data.remote
+package dev.adryanev.dicoding.moviejetpack.data.remote.sources
 
 import dev.adryanev.dicoding.moviejetpack.data.entities.DataResult
-import dev.adryanev.dicoding.moviejetpack.data.entities.Result
 import dev.adryanev.dicoding.moviejetpack.utils.EspressoIdlingResource
 import retrofit2.Response
 import timber.log.Timber
 
-abstract class BaseDataSource<T: Any> : RemoteDataSource<T>{
-    override suspend fun  getResult(call: suspend () -> Response<T>): DataResult<T> {
+abstract class BaseDataSource<T : Any> : RemoteDataSource<T> {
+    override suspend fun getResult(call: suspend () -> Response<T>): DataResult<T> {
 
         try {
             EspressoIdlingResource.increment()
@@ -18,7 +17,11 @@ abstract class BaseDataSource<T: Any> : RemoteDataSource<T>{
                 if (body != null) return DataResult.Success(body)
             }
             EspressoIdlingResource.decrement()
-            return DataResult.Error(RuntimeException(response.errorBody()?.toString() ?: response.message()))
+            return DataResult.Error(
+                RuntimeException(
+                    response.errorBody()?.toString() ?: response.message()
+                )
+            )
         } catch (e: Exception) {
             Timber.e(e)
             EspressoIdlingResource.decrement()

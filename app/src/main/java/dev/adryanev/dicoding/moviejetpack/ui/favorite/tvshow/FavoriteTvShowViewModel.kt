@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
-import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import dev.adryanev.dicoding.moviejetpack.data.repositories.FavoriteRepository
 import dev.adryanev.dicoding.moviejetpack.ui.base.list.BasePagedViewModel
 import javax.inject.Inject

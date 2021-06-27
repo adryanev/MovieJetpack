@@ -21,7 +21,7 @@ import kotlin.time.Duration
 import kotlin.time.ExperimentalTime
 
 @ExperimentalCoroutinesApi
-class MovieRepositoryTest :BaseRepositoryTest() {
+class MovieRepositoryTest : BaseRepositoryTest() {
 
     private val repository = mock<MovieRepository>()
     val movie = createMovie()

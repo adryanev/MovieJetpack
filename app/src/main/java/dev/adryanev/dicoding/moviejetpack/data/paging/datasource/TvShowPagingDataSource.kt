@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import dev.adryanev.dicoding.moviejetpack.data.entities.DataResult
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.mapper.toMovieUi
-import dev.adryanev.dicoding.moviejetpack.data.remote.TvShowRemoteDataSource
+import dev.adryanev.dicoding.moviejetpack.data.remote.sources.TvShowRemoteDataSource
 import javax.inject.Inject
 
 class TvShowPagingDataSource @Inject constructor(private val remoteDataSource: TvShowRemoteDataSource) :

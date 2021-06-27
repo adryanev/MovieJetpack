@@ -56,5 +56,5 @@ class DatabaseModule {
         movieDao: MovieDao,
         movieRemoteKeyDao: MovieRemoteKeyDao,
         favoriteDao: FavoriteDao
-    ): LocalDataSource = LocalDataSourceImpl(movieDao,movieRemoteKeyDao,favoriteDao)
+    ): LocalDataSource = LocalDataSourceImpl(movieDao, movieRemoteKeyDao, favoriteDao)
 }

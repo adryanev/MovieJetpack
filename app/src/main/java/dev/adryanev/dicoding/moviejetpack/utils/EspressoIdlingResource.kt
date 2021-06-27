@@ -11,7 +11,8 @@ object EspressoIdlingResource {
 
     private const val RESOURCE = "GLOBAL"
 
-    @JvmField val countingIdlingResource = CountingIdlingResource(RESOURCE)
+    @JvmField
+    val countingIdlingResource = CountingIdlingResource(RESOURCE)
 
     fun increment() {
         countingIdlingResource.increment()

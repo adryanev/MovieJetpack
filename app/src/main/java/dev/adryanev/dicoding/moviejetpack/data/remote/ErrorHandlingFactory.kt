@@ -1,4 +1,5 @@
 package dev.adryanev.dicoding.moviejetpack.data.remote
+
 import com.squareup.moshi.Moshi
 import retrofit2.HttpException
 import retrofit2.Response
@@ -133,6 +134,7 @@ enum class ErrorType {
      */
     UNEXPECTED
 }
+
 data class ServerErrorResponse(
     val message: String? = null,
     val errors: List<String>? = null

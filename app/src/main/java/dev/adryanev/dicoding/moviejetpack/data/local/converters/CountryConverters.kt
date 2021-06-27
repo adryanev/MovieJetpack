@@ -7,7 +7,7 @@ class CountryConverters {
     fun listToString(values: List<String>): String {
         val strList = mutableListOf<String>()
         values.forEach {
-            strList.add(it.toString())
+            strList.add(it)
         }
         return strList.joinToString(",")
     }

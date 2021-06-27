@@ -2,16 +2,18 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieViewModel" />
     </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:id="@+id/detail_coord"
         android:layout_height="match_parent">
-
 
 
         <androidx.core.widget.NestedScrollView
@@ -20,6 +22,7 @@
             android:clipToPadding="false"
             android:id="@+id/detail_scroll_view"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

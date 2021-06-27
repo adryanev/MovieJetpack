@@ -7,9 +7,8 @@ import androidx.paging.PagingData
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
-import dev.adryanev.dicoding.moviejetpack.data.paging.datasource.MoviePagingDataSource
 import dev.adryanev.dicoding.moviejetpack.data.paging.mediator.MovieRemoteMediator
-import dev.adryanev.dicoding.moviejetpack.data.remote.MovieRemoteDataSource
+import dev.adryanev.dicoding.moviejetpack.data.remote.sources.MovieRemoteDataSource
 import dev.adryanev.dicoding.moviejetpack.data.repositories.MovieRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

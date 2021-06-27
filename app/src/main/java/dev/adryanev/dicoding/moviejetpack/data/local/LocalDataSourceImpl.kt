@@ -25,11 +25,11 @@ class LocalDataSourceImpl @Inject constructor(
     override fun findMovieById(id: Int): Flow<MovieUi> = movieDao.getMovie(id)
 
     override fun findTvShowById(id: Int): Flow<MovieUi> = movieDao.getTvShow(id)
-    override fun getAllFavoriteMovie(): PagingSource<Int,FavoriteAndMovie> {
+    override fun getAllFavoriteMovie(): PagingSource<Int, FavoriteAndMovie> {
         return favoriteDao.getFavoriteMovies()
     }
 
-    override fun getAllFavoriteTvShow(): PagingSource<Int,FavoriteAndMovie> {
+    override fun getAllFavoriteTvShow(): PagingSource<Int, FavoriteAndMovie> {
         return favoriteDao.getFavoriteTvShows()
     }
 

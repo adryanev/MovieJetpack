@@ -1,10 +1,10 @@
 package dev.adryanev.dicoding.moviejetpack.data.entities
 
 import android.os.Parcelable
-import androidx.annotation.NonNull
-import androidx.room.*
-import androidx.room.ForeignKey.CASCADE
-import androidx.room.ForeignKey.SET_NULL
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -24,6 +24,6 @@ data class Favorite(
     var favoriteId: Int? = null,
     var movieId: Int? = null,
     var movieType: String? = null,
-    @ColumnInfo(name="created_at")
+    @ColumnInfo(name = "created_at")
     var createdAt: Date = Date()
-): Parcelable
+) : Parcelable

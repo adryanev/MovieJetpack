@@ -48,13 +48,22 @@ class MovieViewModelTest : BaseViewModelTest() {
             launchTest {
                 viewModel.itemList?.test(timeout = Duration.ZERO, validate = {
                     val collectedData = expectItem().collectData()
-                    assertEquals(4,collectedData.size)
-                    assertEquals(expectedMovieResult(),collectedData)
+                    assertEquals(4, collectedData.size)
+                    assertEquals(expectedMovieResult(), collectedData)
                     assertEquals(expectedMovieResult()[0].id, collectedData[0].id)
                     assertEquals(expectedMovieResult()[0].title, collectedData[0].title)
-                    assertEquals(expectedMovieResult()[0].originalTitle, collectedData[0].originalTitle)
-                    assertEquals(expectedMovieResult()[0].originalLanguage, collectedData[0].originalLanguage)
-                    assertEquals(expectedMovieResult()[0].backdropPath, collectedData[0].backdropPath)
+                    assertEquals(
+                        expectedMovieResult()[0].originalTitle,
+                        collectedData[0].originalTitle
+                    )
+                    assertEquals(
+                        expectedMovieResult()[0].originalLanguage,
+                        collectedData[0].originalLanguage
+                    )
+                    assertEquals(
+                        expectedMovieResult()[0].backdropPath,
+                        collectedData[0].backdropPath
+                    )
                     assertEquals(expectedMovieResult()[0].posterPath, collectedData[0].posterPath)
                     assertEquals(expectedMovieResult()[0].genreIds, collectedData[0].genreIds)
                     assertEquals(expectedMovieResult()[0].voteAverage, collectedData[0].voteAverage)

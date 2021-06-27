@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="item"
             type="dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie" />

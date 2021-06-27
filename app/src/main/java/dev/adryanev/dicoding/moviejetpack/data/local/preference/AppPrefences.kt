@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class AppPrefences @Inject constructor(
     private val sharedPreferences: SharedPreferences
-): Preference {
+) : Preference {
     companion object {
         private const val FIRST_RUN = "first_run"
     }

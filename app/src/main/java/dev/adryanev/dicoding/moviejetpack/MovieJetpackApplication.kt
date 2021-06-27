@@ -14,6 +14,7 @@ class MovieJetpackApplication : Application() {
     val appScope by lazy {
         CoroutineScope(SupervisorJob())
     }
+
     override fun onCreate() {
         super.onCreate()
 

@@ -1,61 +1,58 @@
 package dev.adryanev.dicoding.moviejetpack.data.entities
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import dev.adryanev.dicoding.moviejetpack.BuildConfig
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Movie(
 
-    @Json(name="overview")
+    @Json(name = "overview")
     val overview: String? = null,
 
-    @Json(name="original_language")
+    @Json(name = "original_language")
     val originalLanguage: String? = null,
 
-    @Json(name="original_title")
+    @Json(name = "original_title")
     val originalTitle: String? = null,
 
-    @Json(name="video")
+    @Json(name = "video")
     val video: Boolean? = null,
 
-    @Json(name="title")
+    @Json(name = "title")
     val title: String? = null,
 
-    @Json(name="genre_ids")
+    @Json(name = "genre_ids")
     val genreIds: List<Int?>? = null,
 
-    @Json(name="poster_path")
+    @Json(name = "poster_path")
     val posterPath: String? = null,
 
-    @Json(name="backdrop_path")
+    @Json(name = "backdrop_path")
     val backdropPath: String? = null,
 
-    @Json(name="release_date")
+    @Json(name = "release_date")
     val releaseDate: String? = null,
 
-    @Json(name="media_type")
+    @Json(name = "media_type")
     val mediaType: String? = null,
 
-    @Json(name="vote_average")
+    @Json(name = "vote_average")
     val voteAverage: Double? = null,
 
-    @Json(name="popularity")
+    @Json(name = "popularity")
     val popularity: Double? = null,
 
-    @Json(name="id")
+    @Json(name = "id")
     val id: Int? = null,
 
-    @Json(name="adult")
+    @Json(name = "adult")
     val adult: Boolean? = null,
 
-    @Json(name="vote_count")
+    @Json(name = "vote_count")
     val voteCount: Int? = null
-):Parcelable {
+) : Parcelable {
 
     fun getFullPosterPath() =
         if (posterPath.isNullOrBlank()) null else BuildConfig.SMALL_IMAGE_URL + posterPath

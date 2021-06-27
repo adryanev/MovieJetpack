@@ -29,13 +29,15 @@ import java.util.*
 object BindingAdapters {
 
     @BindingAdapter("genreToString")
-    @JvmStatic fun setGenreToString(view: TextView, genre: List<Int>? ){
-        val genreString =Genre.getGenre(genre)
+    @JvmStatic
+    fun setGenreToString(view: TextView, genre: List<Int>?) {
+        val genreString = Genre.getGenre(genre)
         view.text = genreString
     }
 
     @BindingAdapter("images")
-    @JvmStatic fun setImages(view: ImageView, image:String){
+    @JvmStatic
+    fun setImages(view: ImageView, image: String) {
         val posterId: Int = view.resources.getIdentifier(
             image,
             "drawable",
@@ -49,9 +51,11 @@ object BindingAdapters {
             )
             .into(view)
     }
+
     @BindingAdapter("currency")
-    @JvmStatic fun setCurrency(view: TextView, amount:Int?){
-        if(amount!=null){
+    @JvmStatic
+    fun setCurrency(view: TextView, amount: Int?) {
+        if (amount != null) {
             val format: NumberFormat = NumberFormat.getCurrencyInstance()
             format.maximumFractionDigits = 0
             format.currency = Currency.getInstance("USD")
@@ -61,22 +65,26 @@ object BindingAdapters {
     }
 
     @BindingAdapter("onScrollListener")
-    @JvmStatic fun RecyclerView.customScrollListener(listener: RecyclerView.OnScrollListener?) {
+    @JvmStatic
+    fun RecyclerView.customScrollListener(listener: RecyclerView.OnScrollListener?) {
         if (listener != null) addOnScrollListener(listener)
     }
 
     @BindingAdapter("glideSrc")
-    @JvmStatic fun ImageView.setGlideSrc(@DrawableRes src: Int?) {
+    @JvmStatic
+    fun ImageView.setGlideSrc(@DrawableRes src: Int?) {
         Glide.with(context).load(src).into(this)
     }
 
     @BindingAdapter("loadUri")
-    @JvmStatic  fun ImageView.loadLocalImage(uri: Uri?) {
+    @JvmStatic
+    fun ImageView.loadLocalImage(uri: Uri?) {
         Glide.with(context).load(uri).into(this)
     }
 
     @BindingAdapter(value = ["loadImageLocal"])
-    @JvmStatic  fun ImageView.loadLocalImage(imageName: String?) {
+    @JvmStatic
+    fun ImageView.loadLocalImage(imageName: String?) {
         if (imageName.isNullOrBlank().not()) {
             Glide.with(context)
                 .load(resources.getIdentifier(imageName, "drawable", BuildConfig.APPLICATION_ID))
@@ -85,7 +93,8 @@ object BindingAdapters {
     }
 
     @BindingAdapter(value = ["isLoading"])
-    @JvmStatic fun ContentLoadingProgressBar.show(isLoading: Boolean?) {
+    @JvmStatic
+    fun ContentLoadingProgressBar.show(isLoading: Boolean?) {
         if (isLoading == true) show() else hide()
     }
 
@@ -106,7 +115,8 @@ object BindingAdapters {
         ],
         requireAll = false
     )
-    @JvmStatic fun ImageView.loadImage(
+    @JvmStatic
+    fun ImageView.loadImage(
         imageUrl: String? = null,
         thumbnailUrl: String? = null,
         placeHolderDrawable: Drawable? = null,
@@ -149,7 +159,8 @@ object BindingAdapters {
     }
 
     @BindingAdapter("clickSafe")
-    @JvmStatic fun View.setClickSafe(listener: View.OnClickListener?) {
+    @JvmStatic
+    fun View.setClickSafe(listener: View.OnClickListener?) {
         setOnClickListener(object : View.OnClickListener {
             var lastClickTime: Long = 0
 
@@ -162,7 +173,8 @@ object BindingAdapters {
     }
 
     @BindingAdapter("onSingleClick")
-    @JvmStatic   fun View.setSingleClick(execution: () -> Unit) {
+    @JvmStatic
+    fun View.setSingleClick(execution: () -> Unit) {
         setOnClickListener(object : View.OnClickListener {
             var lastClickTime: Long = 0
 
@@ -175,19 +187,22 @@ object BindingAdapters {
     }
 
     @BindingAdapter("backgroundTint")
-    @JvmStatic fun TextView.customBackgroundTint(color: Int?) {
+    @JvmStatic
+    fun TextView.customBackgroundTint(color: Int?) {
         if (color == null) return
         background?.setTint(color)
     }
 
     @BindingAdapter("tint")
-    @JvmStatic fun ImageView.customTint(color: Int?) {
+    @JvmStatic
+    fun ImageView.customTint(color: Int?) {
         if (color == null) return
         imageTintList = ColorStateList.valueOf(color)
     }
 
     @BindingAdapter("enableRefresh")
-    @JvmStatic fun SwipeRefreshLayout.enableRefresh(enable: Boolean?) {
+    @JvmStatic
+    fun SwipeRefreshLayout.enableRefresh(enable: Boolean?) {
         isEnabled = enable == true
     }
 

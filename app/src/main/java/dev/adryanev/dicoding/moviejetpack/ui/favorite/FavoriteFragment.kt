@@ -10,6 +10,7 @@ import dev.adryanev.dicoding.moviejetpack.databinding.FragmentFavoriteBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseFragment
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseViewModel
 import dev.adryanev.dicoding.moviejetpack.ui.home.SectionPagerAdapter
+
 @AndroidEntryPoint
 class FavoriteFragment : BaseFragment<FragmentFavoriteBinding, BaseViewModel>() {
 

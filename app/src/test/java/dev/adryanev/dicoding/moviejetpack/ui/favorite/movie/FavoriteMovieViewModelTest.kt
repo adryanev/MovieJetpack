@@ -44,18 +44,36 @@ class FavoriteMovieViewModelTest : BaseViewModelTest() {
                     assertEquals(4, collectedData.size)
                     assertEquals(favorite, collectedData)
                     assertEquals(favorite[0].favorite, collectedData[0].favorite)
-                    assertEquals(favorite[0].favorite?.favoriteId, collectedData[0].favorite?.favoriteId)
+                    assertEquals(
+                        favorite[0].favorite?.favoriteId,
+                        collectedData[0].favorite?.favoriteId
+                    )
                     assertEquals(favorite[0].favorite?.movieId, collectedData[0].favorite?.movieId)
-                    assertEquals(favorite[0].favorite?.movieType, collectedData[0].favorite?.movieType)
-                    assertEquals(favorite[0].favorite?.createdAt, collectedData[0].favorite?.createdAt)
+                    assertEquals(
+                        favorite[0].favorite?.movieType,
+                        collectedData[0].favorite?.movieType
+                    )
+                    assertEquals(
+                        favorite[0].favorite?.createdAt,
+                        collectedData[0].favorite?.createdAt
+                    )
 
 
                     assertEquals(favorite[0].movie, collectedData[0].movie)
                     assertEquals(favorite[0].movie.id, collectedData[0].movie.id)
                     assertEquals(favorite[0].movie.title, collectedData[0].movie.title)
-                    assertEquals(favorite[0].movie.originalTitle, collectedData[0].movie.originalTitle)
-                    assertEquals(favorite[0].movie.originalLanguage, collectedData[0].movie.originalLanguage)
-                    assertEquals(favorite[0].movie.backdropPath, collectedData[0].movie.backdropPath)
+                    assertEquals(
+                        favorite[0].movie.originalTitle,
+                        collectedData[0].movie.originalTitle
+                    )
+                    assertEquals(
+                        favorite[0].movie.originalLanguage,
+                        collectedData[0].movie.originalLanguage
+                    )
+                    assertEquals(
+                        favorite[0].movie.backdropPath,
+                        collectedData[0].movie.backdropPath
+                    )
                     assertEquals(favorite[0].movie.posterPath, collectedData[0].movie.posterPath)
                     assertEquals(favorite[0].movie.genreIds, collectedData[0].movie.genreIds)
                     assertEquals(favorite[0].movie.voteAverage, collectedData[0].movie.voteAverage)

@@ -5,7 +5,6 @@ import androidx.room.*
 import dev.adryanev.dicoding.moviejetpack.data.entities.Movie
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.TvShow
-import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import kotlinx.coroutines.flow.Flow
 
 @Dao

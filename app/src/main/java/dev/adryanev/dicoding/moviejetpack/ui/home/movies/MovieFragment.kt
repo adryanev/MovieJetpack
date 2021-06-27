@@ -34,6 +34,7 @@ class MovieFragment : BaseMediatorPagedFragment<FragmentMovieBinding, MovieViewM
         getNavController()?.navigate(MovieFragmentDirections.toMovieDetail(movie))
 
     }
+
     override val swipeRefreshLayout: SwipeRefreshLayout
         get() = viewBinding.refreshMovie
     override val recyclerView: RecyclerView

@@ -12,10 +12,8 @@ import dev.adryanev.dicoding.moviejetpack.R
 import dev.adryanev.dicoding.moviejetpack.data.entities.Favorite
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.entities.relations.FavoriteAndMovie
-import dev.adryanev.dicoding.moviejetpack.data.entities.relations.MovieUiAndFavorite
 import dev.adryanev.dicoding.moviejetpack.databinding.FragmentDetailMovieBinding
 import dev.adryanev.dicoding.moviejetpack.ui.base.BaseFragment
-import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovieViewModel>() {
@@ -89,13 +87,13 @@ class DetailMovieFragment : BaseFragment<FragmentDetailMovieBinding, DetailMovie
 
             viewModel.setBookmark(
                 viewModel.favorite.value ?: FavoriteAndMovie(
-                    favorite =Favorite(
+                    favorite = Favorite(
                         movieId = viewModel.movie.value?.id!!,
                         movieType = viewModel.movie.value?.type
                     ),
                     movie = viewModel.movie.value!!,
 
-                ),
+                    ),
                 viewModel.favorite.value == null
             )
             return true

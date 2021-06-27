@@ -22,7 +22,8 @@ import dev.adryanev.dicoding.moviejetpack.utils.dismissLLoadingDialog
 import dev.adryanev.dicoding.moviejetpack.utils.showDialog
 import dev.adryanev.dicoding.moviejetpack.utils.showLoadingDialog
 
-abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewModel> : Fragment(), BaseView {
+abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewModel> : Fragment(),
+    BaseView {
 
     protected lateinit var viewBinding: ViewBinding
     protected abstract val viewModel: ViewModel
@@ -91,7 +92,7 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
     private var toast: Toast? = null
     override fun showMessage(message: String, length: Int) {
         toast?.cancel()
-        toast = Toast.makeText(requireContext(),message,length).also{
+        toast = Toast.makeText(requireContext(), message, length).also {
             it.show()
         }
     }
@@ -99,8 +100,8 @@ abstract class BaseFragment<ViewBinding : ViewDataBinding, ViewModel : BaseViewM
     private var snack: Snackbar? = null
     override fun showSnack(message: String, actionTitle: String, action: () -> Unit) {
         snack?.dismiss()
-        snack = Snackbar.make(requireView(),message,Snackbar.LENGTH_INDEFINITE)
-            .setAction(actionTitle){
+        snack = Snackbar.make(requireView(), message, Snackbar.LENGTH_INDEFINITE)
+            .setAction(actionTitle) {
                 action.invoke()
             }
     }

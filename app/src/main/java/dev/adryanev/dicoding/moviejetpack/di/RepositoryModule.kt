@@ -18,13 +18,16 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository = movieRepositoryImpl
+    fun provideMovieRepository(movieRepositoryImpl: MovieRepositoryImpl): MovieRepository =
+        movieRepositoryImpl
 
     @Singleton
     @Provides
-    fun provideTvShowRepository(tvShowRepository: TvShowRepositoryImpl): TvShowRepository = tvShowRepository
+    fun provideTvShowRepository(tvShowRepository: TvShowRepositoryImpl): TvShowRepository =
+        tvShowRepository
 
     @Singleton
     @Provides
-    fun provideFavoriteRepository(favoriteRepository: FavoriteRepositoryImpl): FavoriteRepository = favoriteRepository
+    fun provideFavoriteRepository(favoriteRepository: FavoriteRepositoryImpl): FavoriteRepository =
+        favoriteRepository
 }

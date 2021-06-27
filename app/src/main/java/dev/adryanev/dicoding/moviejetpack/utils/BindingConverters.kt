@@ -4,14 +4,16 @@ import android.view.View
 import androidx.databinding.BindingConversion
 
 object ConverterUtil {
-    @JvmStatic fun isNull(attributeName: Any?): Boolean {
+    @JvmStatic
+    fun isNull(attributeName: Any?): Boolean {
         return attributeName == null
     }
 }
 
-object BindingConverters{
+object BindingConverters {
     @BindingConversion
-    @JvmStatic fun booleanToVisibility(isNotVisible: Boolean): Int {
+    @JvmStatic
+    fun booleanToVisibility(isNotVisible: Boolean): Int {
         return if (isNotVisible) View.GONE else View.VISIBLE
     }
 }

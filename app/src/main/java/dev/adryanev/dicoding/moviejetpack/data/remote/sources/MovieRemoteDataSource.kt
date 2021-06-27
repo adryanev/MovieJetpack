@@ -1,4 +1,4 @@
-package dev.adryanev.dicoding.moviejetpack.data.remote
+package dev.adryanev.dicoding.moviejetpack.data.remote.sources
 
 import dev.adryanev.dicoding.moviejetpack.data.entities.DataResult
 import dev.adryanev.dicoding.moviejetpack.data.remote.api.Webservice

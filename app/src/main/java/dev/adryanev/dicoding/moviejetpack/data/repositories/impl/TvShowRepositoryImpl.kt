@@ -7,11 +7,8 @@ import androidx.paging.PagingData
 import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
-import dev.adryanev.dicoding.moviejetpack.data.paging.datasource.MoviePagingDataSource
-import dev.adryanev.dicoding.moviejetpack.data.paging.datasource.TvShowPagingDataSource
-import dev.adryanev.dicoding.moviejetpack.data.paging.mediator.MovieRemoteMediator
 import dev.adryanev.dicoding.moviejetpack.data.paging.mediator.TvShowRemoteMediator
-import dev.adryanev.dicoding.moviejetpack.data.remote.TvShowRemoteDataSource
+import dev.adryanev.dicoding.moviejetpack.data.remote.sources.TvShowRemoteDataSource
 import dev.adryanev.dicoding.moviejetpack.data.repositories.TvShowRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -27,7 +24,7 @@ class TvShowRepositoryImpl @Inject constructor(
 
 
     @ExperimentalPagingApi
-    override suspend fun getTvShowList():  Flow<PagingData<MovieUi>> {
+    override suspend fun getTvShowList(): Flow<PagingData<MovieUi>> {
         val localPagingSourceFactory = { localDataSource.getAllTvShows() }
         val remoteMediator =
             TvShowRemoteMediator(remoteDataSource, localDataSource, database)

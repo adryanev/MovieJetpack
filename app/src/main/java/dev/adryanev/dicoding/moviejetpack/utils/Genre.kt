@@ -1,7 +1,7 @@
 package dev.adryanev.dicoding.moviejetpack.utils
 
 class Genre {
-    companion object{
+    companion object {
 
         private val genreMap = mapOf(
             28 to "Action",
@@ -33,7 +33,7 @@ class Genre {
             10768 to "War & Politics"
         )
 
-        fun getGenre(ids: List<Int>?) : String? {
+        fun getGenre(ids: List<Int>?): String? {
             ids?.let {
                 val genreStrs = mutableListOf<String>()
                 ids.forEach {
@@ -41,10 +41,10 @@ class Genre {
                     genreStrs.add(getGenre(it))
                 }
                 return genreStrs.joinToString(separator = ", ")
-            } ?: return  ""
+            } ?: return ""
         }
 
-        private fun getGenre(id: Int?) : String {
+        private fun getGenre(id: Int?): String {
             genreMap[id].let {
                 return it ?: ""
             }

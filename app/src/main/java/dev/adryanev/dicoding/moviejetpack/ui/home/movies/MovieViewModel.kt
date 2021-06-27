@@ -16,10 +16,11 @@ class MovieViewModel @Inject constructor(
     init {
         getMovieList()
     }
+
     private fun getMovieList() = launchPagingAsync(
         execute = {
-        movieRepository.getMovieList().cachedIn(viewModelScope)
-    },
+            movieRepository.getMovieList().cachedIn(viewModelScope)
+        },
         onSuccess = {
             itemList = it
         }

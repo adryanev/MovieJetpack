@@ -13,12 +13,11 @@ import dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi
 import dev.adryanev.dicoding.moviejetpack.data.local.AppDatabase
 import dev.adryanev.dicoding.moviejetpack.data.local.LocalDataSource
 import dev.adryanev.dicoding.moviejetpack.data.mapper.toMovieUI
-import dev.adryanev.dicoding.moviejetpack.data.remote.MovieRemoteDataSource
+import dev.adryanev.dicoding.moviejetpack.data.remote.sources.MovieRemoteDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.util.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @ExperimentalPagingApi
@@ -28,21 +27,6 @@ class MovieRemoteMediator @Inject constructor(
     private val db: AppDatabase
 ) : RemoteMediator<Int, MovieUi>() {
 
-
-//    override suspend fun initialize(): InitializeAction {
-//        val cacheTimeout = TimeUnit.HOURS.convert(1, TimeUnit.MILLISECONDS)
-//        return if (System.currentTimeMillis() - db.movieDao().lastUpdated()?:0>= cacheTimeout)
-//        {
-//            // Cached data is up-to-date, so there is no need to re-fetch
-//            // from the network.
-//            InitializeAction.SKIP_INITIAL_REFRESH
-//        } else {
-//            // Need to refresh cached data from network; returning
-//            // LAUNCH_INITIAL_REFRESH here will also block RemoteMediator's
-//            // APPEND and PREPEND from running until REFRESH succeeds.
-//            InitializeAction.LAUNCH_INITIAL_REFRESH
-//        }
-//    }
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, MovieUi>

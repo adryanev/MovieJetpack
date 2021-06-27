@@ -21,7 +21,7 @@
         android:id="@+id/favoriteFragment"
         android:name="dev.adryanev.dicoding.moviejetpack.ui.favorite.FavoriteFragment"
         android:label="@string/favorite"
-        tools:layout="@layout/fragment_favorite"/>
+        tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/movieFragment"
         android:label="@string/movie"
@@ -38,7 +38,7 @@
         android:id="@+id/tvShowFragment"
         android:name="dev.adryanev.dicoding.moviejetpack.ui.home.tvshows.TvShowFragment"
         tools:layout="@layout/fragment_movie"
-        android:label="@string/tv_show"/>
+        android:label="@string/tv_show" />
 
     <fragment
         android:id="@+id/favoriteMovieFragment"
@@ -51,11 +51,10 @@
         android:id="@+id/detailMovieFragment"
         android:name="dev.adryanev.dicoding.moviejetpack.ui.detailmovie.DetailMovieFragment"
         android:label="DetailMovie"
-        tools:layout="@layout/fragment_detail_movie" >
+        tools:layout="@layout/fragment_detail_movie">
         <argument
             android:name="movie"
-            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi"
-            />
+            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi" />
     </fragment>
 
     <action
@@ -64,11 +63,10 @@
         app:enterAnim="@anim/slide_in_right"
         app:exitAnim="@anim/slide_out_left"
         app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right" >
+        app:popExitAnim="@anim/slide_out_right">
         <argument
             android:name="movie"
-            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi"
-            />
+            app:argType="dev.adryanev.dicoding.moviejetpack.data.entities.MovieUi" />
     </action>
 
 

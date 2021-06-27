@@ -31,14 +31,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
 //            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment?
 
 //        val navController = navHostFragment?.navController
-         navController = findNavController(R.id.nav_host_fragment)
+        navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(R.id.movieFragment, R.id.tvShowFragment, R.id.favoriteFragment)
         )
 
         navController.let {
             navView.setupWithNavController(it)
-            toolbar.setupWithNavController(it,appBarConfiguration)
+            toolbar.setupWithNavController(it, appBarConfiguration)
             it.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
                     R.id.detailMovieFragment -> {
@@ -58,7 +58,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, BaseViewModel>() {
         }
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
 
 
     }

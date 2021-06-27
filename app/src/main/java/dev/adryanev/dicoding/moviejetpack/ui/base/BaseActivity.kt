@@ -11,17 +11,18 @@ import dev.adryanev.dicoding.moviejetpack.utils.dismissLLoadingDialog
 import dev.adryanev.dicoding.moviejetpack.utils.showDialog
 import dev.adryanev.dicoding.moviejetpack.utils.showLoadingDialog
 
-abstract class BaseActivity<ViewBinding: ViewDataBinding, ViewModel: BaseViewModel> : AppCompatActivity(){
+abstract class BaseActivity<ViewBinding : ViewDataBinding, ViewModel : BaseViewModel> :
+    AppCompatActivity() {
 
     protected lateinit var viewBinding: ViewBinding
     protected abstract val viewModel: ViewModel
 
     @get:LayoutRes
-    protected abstract val layoutId:Int
+    protected abstract val layoutId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewBinding = DataBindingUtil.setContentView(this,layoutId)
+        viewBinding = DataBindingUtil.setContentView(this, layoutId)
         viewBinding.apply {
             setVariable(BR.viewModel, viewModel)
             viewBinding.lifecycleOwner = this@BaseActivity
@@ -31,7 +32,7 @@ abstract class BaseActivity<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
         observeErrorEvent()
     }
 
-    private fun observeErrorEvent (){
+    private fun observeErrorEvent() {
         viewModel.apply {
             isLoading.observe(this@BaseActivity, {
                 handleLoading(it == true)
@@ -51,6 +52,7 @@ abstract class BaseActivity<ViewBinding: ViewDataBinding, ViewModel: BaseViewMod
             })
         }
     }
+
     /**
      * override this if not use loading dialog (example progress bar)
      */
